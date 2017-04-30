@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="color_title_text">#ffffff</color>
+
+    <color name="color_calendar_day_of_week_names">#8e8e8e</color>
+    <color name="color_calendar_date_border">#a3a3a3</color>
+    <color name="color_calendar_date_background_deselected">#dbdcdc</color>
+    <color name="color_calendar_date_background_selected">#aefafa</color>
+    <color name="color_calendar_background_date_current">#93d1d1</color>
+
+    <color name="color_calendar_greed_affairs_number_text">#000000</color>
+
+    <color name="activity_main_empty_date">#8e8e8e</color>
+    <color name="activity_main_unselected_date_message">#8e8e8e</color>
+</resources>

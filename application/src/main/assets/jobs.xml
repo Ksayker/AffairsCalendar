@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="WINDOWS-1251"?>
+<response status="OK">
+	<jobs>
+		<job>
+			<affairId>1</affairId>
+			<vcTitle>Отпуск Дмитрия Иванова</vcTitle>
+			<vcOfficerID>204</vcOfficerID>
+			<iTaskID>72755</iTaskID>
+			<dtStartExpected>2017-03-01 10:00:00</dtStartExpected>
+			<dtFinishExpected>2017-03-15 08:30:00</dtFinishExpected>
+			<vcPlace/>
+			<vcMessageOriginal>Отпуск с 01.03 по 15.03.</vcMessageOriginal>
+			<iUrgency>-1</iUrgency>
+			<bPrivate>false</bPrivate>
+			<iImportance>0</iImportance>
+		</job>
+		<job>
+			<affairId>2</affairId>
+			<vcTitle>Звонок Сергею Борисовичу</vcTitle>
+			<vcOfficerID>54</vcOfficerID>
+			<iTaskID>5464</iTaskID>
+			<dtStartExpected>2017-03-01 12:00:00</dtStartExpected>
+			<dtFinishExpected>2017-03-26 12:30:00</dtFinishExpected>
+			<vcPlace/>
+			<vcMessageOriginal>Договориться о поставках</vcMessageOriginal>
+			<iUrgency>1</iUrgency>
+			<bPrivate>true</bPrivate>
+			<iImportance>1</iImportance>
+		</job>
+		<job>
+			<affairId>3</affairId>
+			<vcTitle>Встреча с акционерами</vcTitle>
+			<vcOfficerID></vcOfficerID>
+			<iTaskID></iTaskID>
+			<dtStartExpected>2017-03-03 15:00:00</dtStartExpected>
+			<dtFinishExpected>2017-03-03 17:00:00</dtFinishExpected>
+			<vcPlace>ТЦ "Арсенал"</vcPlace>
+			<vcMessageOriginal/>
+			<iUrgency>-1</iUrgency>
+			<bPrivate>false</bPrivate>
+			<iImportance>-1</iImportance>
+		</job>
+		<job>
+			<affairId>4</affairId>
+			<vcTitle>Планёрка</vcTitle>
+			<vcOfficerID>654654</vcOfficerID>
+			<iTaskID>52454</iTaskID>
+			<dtStartExpected>2017-03-18 08:00:00</dtStartExpected>
+			<dtFinishExpected>2017-03-18 08:30:00</dtFinishExpected>
+			<vcPlace/>
+			<vcMessageOriginal>Планёрка по важным вопросам</vcMessageOriginal>
+			<iUrgency>1</iUrgency>
+			<bPrivate>false</bPrivate>
+			<iImportance>1</iImportance>
+		</job>
+	</jobs>
+</response>

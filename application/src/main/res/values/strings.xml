@@ -1,0 +1,18 @@
+<resources>
+    <string name="application_name">Календарь дел</string>
+
+    <string name="activity_main_request_select_date">Для просмотра списка дел выберите, пожалуйста, дату.</string>
+    <string name="activity_main_no_planned_affairs">Нет запланированных дел.</string>
+
+
+    <string name="card_view_popupmenu_affair_item_edit">Редактировать</string>
+
+    <string name="content_description_card_view_affair_image">card_view_affair_image</string>
+
+    <string name="dialog_fragment_affair_edit_name_label">Название</string>
+    <string name="dialog_fragment_affair_edit_start_label">Начало</string>
+    <string name="dialog_fragment_affair_edit_end_label">Окончание</string>
+
+    <string name="ok">Ок</string>
+    <string name="cancel">Отмена</string>
+</resources>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="WINDOWS-1251"?>
+<response status="OK">
+	<jobs>
+		<job>
+			<affairId>1</affairId>
+			<vcTitle>Отпуск Дмитрия Иванова</vcTitle>
+			<vcOfficerID>204</vcOfficerID>
+			<iTaskID>72755</iTaskID>
+			<dtStartExpected>2017-04-01 10:00:00</dtStartExpected>
+			<dtFinishExpected>2017-04-15 08:30:00</dtFinishExpected>
+			<vcPlace/>
+			<vcMessageOriginal>Отпуск с 01.03 по 15.03.</vcMessageOriginal>
+			<iUrgency>-1</iUrgency>
+			<bPrivate>false</bPrivate>
+			<iImportance>0</iImportance>
+		</job>
+		<job>
+			<affairId>2</affairId>
+			<vcTitle>Звонок Сергею Борисовичу</vcTitle>
+			<vcOfficerID>54</vcOfficerID>
+			<iTaskID>5464</iTaskID>
+			<dtStartExpected>2017-04-01 12:00:00</dtStartExpected>
+			<dtFinishExpected>2017-04-26 12:30:00</dtFinishExpected>
+			<vcPlace/>
+			<vcMessageOriginal>Договориться о поставках</vcMessageOriginal>
+			<iUrgency>1</iUrgency>
+			<bPrivate>true</bPrivate>
+			<iImportance>1</iImportance>
+		</job>
+		<job>
+			<affairId>3</affairId>
+			<vcTitle>Встреча с акционерами</vcTitle>
+			<vcOfficerID></vcOfficerID>
+			<iTaskID></iTaskID>
+			<dtStartExpected>2017-04-01 15:00:00</dtStartExpected>
+			<dtFinishExpected>2017-04-03 17:00:00</dtFinishExpected>
+			<vcPlace>ТЦ "Арсенал"</vcPlace>
+			<vcMessageOriginal/>
+			<iUrgency>-1</iUrgency>
+			<bPrivate>false</bPrivate>
+			<iImportance>-1</iImportance>
+		</job>
+		<job>
+			<affairId>4</affairId>
+			<vcTitle>Планёрка</vcTitle>
+			<vcOfficerID>654654</vcOfficerID>
+			<iTaskID>52454</iTaskID>
+			<dtStartExpected>2017-04-3 08:00:00</dtStartExpected>
+			<dtFinishExpected>2017-04-3 08:30:00</dtFinishExpected>
+			<vcPlace/>
+			<vcMessageOriginal>Планёрка по важным вопросам</vcMessageOriginal>
+			<iUrgency>1</iUrgency>
+			<bPrivate>false</bPrivate>
+			<iImportance>1</iImportance>
+		</job>
+		<job>
+			<affairId>5</affairId>
+			<vcTitle>Отпуск Дмитрия Иванова</vcTitle>
+			<vcOfficerID>204</vcOfficerID>
+			<iTaskID>72755</iTaskID>
+			<dtStartExpected>2017-04-07 10:00:00</dtStartExpected>
+			<dtFinishExpected>2017-04-15 08:30:00</dtFinishExpected>
+			<vcPlace/>
+			<vcMessageOriginal>Отпуск с 01.03 по 15.03.</vcMessageOriginal>
+			<iUrgency>-1</iUrgency>
+			<bPrivate>false</bPrivate>
+			<iImportance>0</iImportance>
+		</job>
+		<job>
+			<affairId>6</affairId>
+			<vcTitle>Звонок Сергею Борисовичу</vcTitle>
+			<vcOfficerID>54</vcOfficerID>
+			<iTaskID>5464</iTaskID>
+			<dtStartExpected>2017-04-7 12:00:00</dtStartExpected>
+			<dtFinishExpected>2017-04-26 12:30:00</dtFinishExpected>
+			<vcPlace/>
+			<vcMessageOriginal>Договориться о поставках</vcMessageOriginal>
+			<iUrgency>1</iUrgency>
+			<bPrivate>true</bPrivate>
+			<iImportance>1</iImportance>
+		</job>
+		<job>
+			<affairId>7</affairId>
+			<vcTitle>Встреча с акционерами</vcTitle>
+			<vcOfficerID></vcOfficerID>
+			<iTaskID></iTaskID>
+			<dtStartExpected>2017-04-08 15:00:00</dtStartExpected>
+			<dtFinishExpected>2017-04-08 17:00:00</dtFinishExpected>
+			<vcPlace>ТЦ "Арсенал"</vcPlace>
+			<vcMessageOriginal/>
+			<iUrgency>-1</iUrgency>
+			<bPrivate>false</bPrivate>
+			<iImportance>-1</iImportance>
+		</job>
+		<job>
+			<affairId>8</affairId>
+			<vcTitle>Планёрка</vcTitle>
+			<vcOfficerID>654654</vcOfficerID>
+			<iTaskID>52454</iTaskID>
+			<dtStartExpected>2017-04-01 08:00:00</dtStartExpected>
+			<dtFinishExpected>2017-04-08 08:30:00</dtFinishExpected>
+			<vcPlace/>
+			<vcMessageOriginal>Планёрка по важным вопросам</vcMessageOriginal>
+			<iUrgency>1</iUrgency>
+			<bPrivate>false</bPrivate>
+			<iImportance>1</iImportance>
+		</job>
+		<job>
+			<affairId>9</affairId>
+			<vcTitle>Планёрка</vcTitle>
+			<vcOfficerID>654654</vcOfficerID>
+			<iTaskID>52454</iTaskID>
+			<dtStartExpected>2017-04-01 08:00:00</dtStartExpected>
+			<dtFinishExpected>2017-04-18 08:30:00</dtFinishExpected>
+			<vcPlace/>
+			<vcMessageOriginal>Планёрка по важным вопросам</vcMessageOriginal>
+			<iUrgency>1</iUrgency>
+			<bPrivate>false</bPrivate>
+			<iImportance>1</iImportance>
+		</job>
+		<job>
+			<affairId>10</affairId>
+			<vcTitle>Планёрка</vcTitle>
+			<vcOfficerID>654654</vcOfficerID>
+			<iTaskID>52454</iTaskID>
+			<dtStartExpected>2017-04-15 08:00:00</dtStartExpected>
+			<dtFinishExpected>2017-04-18 08:30:00</dtFinishExpected>
+			<vcPlace/>
+			<vcMessageOriginal>Планёрка по важным вопросам</vcMessageOriginal>
+			<iUrgency>1</iUrgency>
+			<bPrivate>false</bPrivate>
+			<iImportance>1</iImportance>
+		</job>
+		<job>
+			<affairId>11</affairId>
+			<vcTitle>Планёрка</vcTitle>
+			<vcOfficerID>654654</vcOfficerID>
+			<iTaskID>52454</iTaskID>
+			<dtStartExpected>2017-04-01 08:00:00</dtStartExpected>
+			<dtFinishExpected>2017-04-18 08:30:00</dtFinishExpected>
+			<vcPlace/>
+			<vcMessageOriginal>Планёрка по важным вопросам</vcMessageOriginal>
+			<iUrgency>1</iUrgency>
+			<bPrivate>false</bPrivate>
+			<iImportance>1</iImportance>
+		</job>
+		<job>
+			<affairId>12</affairId>
+			<vcTitle>Планёрка</vcTitle>
+			<vcOfficerID>654654</vcOfficerID>
+			<iTaskID>52454</iTaskID>
+			<dtStartExpected>2017-04-01 08:00:00</dtStartExpected>
+			<dtFinishExpected>2017-04-18 08:30:00</dtFinishExpected>
+			<vcPlace/>
+			<vcMessageOriginal>Планёрка по важным вопросам</vcMessageOriginal>
+			<iUrgency>1</iUrgency>
+			<bPrivate>false</bPrivate>
+			<iImportance>1</iImportance>
+		</job>
+		<job>
+			<affairId>13</affairId>
+			<vcTitle>Планёрка</vcTitle>
+			<vcOfficerID>654654</vcOfficerID>
+			<iTaskID>52454</iTaskID>
+			<dtStartExpected>2017-04-01 08:00:00</dtStartExpected>
+			<dtFinishExpected>2017-04-18 08:30:00</dtFinishExpected>
+			<vcPlace/>
+			<vcMessageOriginal>Планёрка по важным вопросам</vcMessageOriginal>
+			<iUrgency>1</iUrgency>
+			<bPrivate>false</bPrivate>
+			<iImportance>1</iImportance>
+		</job>
+		<job>
+			<affairId>14</affairId>
+			<vcTitle>Планёрка</vcTitle>
+			<vcOfficerID>654654</vcOfficerID>
+			<iTaskID>52454</iTaskID>
+			<dtStartExpected>2017-04-01 08:00:00</dtStartExpected>
+			<dtFinishExpected>2017-04-18 08:30:00</dtFinishExpected>
+			<vcPlace/>
+			<vcMessageOriginal>Планёрка по важным вопросам</vcMessageOriginal>
+			<iUrgency>1</iUrgency>
+			<bPrivate>false</bPrivate>
+			<iImportance>1</iImportance>
+		</job>
+	</jobs>
+</response>
