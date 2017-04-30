@@ -92,7 +92,8 @@ public class MonthGridAdapter extends ArrayAdapter {
         long dayStart = DateUtil.getDateDayStart(date);
         TextView affairNumberTextView = (TextView) rootView
                 .findViewById(R.id.item_grid_view_affairs_number);
-        if (mAffairsData.getAffairs().indexOfKey(dayStart) >= 0){
+        if (mAffairsData.getAffairs().indexOfKey(dayStart) >= 0
+                && mAffairsData.getAffairs().get(dayStart).size() != 0){
             affairNumberTextView.setVisibility(View.VISIBLE);
             affairNumberTextView.setText(String.valueOf(
                     mAffairsData.getAffairs().get(dayStart).size()));
