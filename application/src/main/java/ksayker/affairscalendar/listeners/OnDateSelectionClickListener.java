@@ -40,7 +40,9 @@ public class OnDateSelectionClickListener implements View.OnClickListener {
             ViewUtil.setBackground(view ,
                     mSelectionDayData.getSelectedBackground());
 
-            if (mSelectionDayData.getPreviousView() != null){
+            if (mSelectionDayData.getPreviousView() != null
+                    && mSelectionDayData.getCurrentView()
+                        != mSelectionDayData.getPreviousView()){
                 long previousViewDate =
                         ((DateTextView) mSelectionDayData.getPreviousView())
                                 .getDate();
