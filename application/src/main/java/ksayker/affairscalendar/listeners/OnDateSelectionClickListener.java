@@ -1,11 +1,7 @@
 package ksayker.affairscalendar.listeners;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.view.View;
 
-import ksayker.affairscalendar.R;
 import ksayker.affairscalendar.interfaces.OnAffairsDateSelector;
 import ksayker.affairscalendar.model.SelectionDayData;
 import ksayker.affairscalendar.utils.DateUtil;
@@ -21,8 +17,9 @@ public class OnDateSelectionClickListener implements View.OnClickListener {
     private OnAffairsDateSelector mOnAffairsDateSelector;
     private SelectionDayData mSelectionDayData;
 
-    public OnDateSelectionClickListener(SelectionDayData selectionDayData,
-                                        OnAffairsDateSelector onAffairsDateSelector){
+    public OnDateSelectionClickListener(
+            SelectionDayData selectionDayData,
+            OnAffairsDateSelector onAffairsDateSelector){
         mOnAffairsDateSelector = onAffairsDateSelector;
         mSelectionDayData = selectionDayData;
     }

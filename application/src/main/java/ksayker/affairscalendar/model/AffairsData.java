@@ -15,72 +15,64 @@ import ksayker.affairscalendar.utils.DateUtil;
  */
 public class AffairsData {
     /** Key is value of date begin of day*/
-    private LongSparseArray<List<Affair>> mAffairs;
+    private List<Affair> mAffairs;
 
-    public AffairsData(List<Affair> affairsList) {
-        mAffairs = buildLongSparseArray(affairsList);
+    public AffairsData(List<Affair> affairs) {
+        mAffairs = affairs;
     }
 
-    private static LongSparseArray<List<Affair>> buildLongSparseArray(
-            List<Affair> affairs){
-        LongSparseArray<List<Affair>> result = new LongSparseArray<>();
-        for (int i = 0, n = affairs.size(); i < n; i++) {
-            long dayStart = DateUtil.getDateDayStart(affairs.get(i)
-                    .getDateStartExpected());
-            if (result.indexOfKey(dayStart) < 0){
-                result.put(dayStart, new ArrayList<Affair>());
-            }
-            result.get(dayStart).add(affairs.get(i));
-        }
-
-        return result;
-    }
-
-    public LongSparseArray<List<Affair>> getAffairs() {
+    public List<Affair> getAllAffairs() {
         return mAffairs;
     }
 
     public List<Affair> getAffairsByDay(long date){
         date = DateUtil.getDateDayStart(date);
-        List<Affair> result = null;
-        if (mAffairs.indexOfKey(date) >= 0){
-            result = mAffairs.get(date);
+        List<Affair> result = new ArrayList<>();
+        for (int i = 0, n = mAffairs.size(); i < n; i++) {
+            if (DateUtil.isDateInInterval(
+                    date,
+                    DateUtil.getDateDayStart(
+                            mAffairs.get(i).getDateStartExpected()),
+                    mAffairs.get(i).getDateFinishExpected().getTime())){
+                result.add(mAffairs.get(i));
+            }
         }
-
         return result;
     }
 
-    public void setAffairs(LongSparseArray<List<Affair>> affairs) {
+    public void setAffairs(List<Affair> affairs) {
         mAffairs = affairs;
     }
 
     public void changeAffair(int affairId, String newTitle,
                              long newDateStart, long newDateFinish) {
         Affair affair = null;
-        List<Affair> affairsInDay = null;
-        outer:
         for (int i = 0, n = mAffairs.size(); i < n; i++) {
-            affairsInDay = mAffairs.get(mAffairs.keyAt(i));
-            for (int j = 0, m = affairsInDay.size(); j < m; j++) {
-                if (affairsInDay.get(j).getAffairId() == affairId){
-                    affair = affairsInDay.get(j);
-                    break outer;
-                }
+            if (mAffairs.get(i).getAffairId() == affairId) {
+                affair = mAffairs.get(i);
+                break;
             }
         }
         if (affair != null){
-            affairsInDay.remove(affair);
-
             affair.setDateStartExpected(new Date(newDateStart));
             affair.setDateFinishExpected(new Date(newDateFinish));
             affair.setTitle(newTitle);
-
-            long newKey = DateUtil.getDateDayStart(newDateStart);
-
-            if (mAffairs.indexOfKey(newKey) < 0){
-                mAffairs.put(newKey, new ArrayList<Affair>());
-            }
-            mAffairs.get(newKey).add(affair);
         }
+    }
+
+    public int getAffairsNumberForDay(long date){
+        int count = 0;
+        date = DateUtil.getDateDayStart(date);
+        for (int i = 0, n = mAffairs.size() ; i < n; i++) {
+            if (DateUtil.isDateInInterval(
+                    date,
+                    DateUtil.getDateDayStart(
+                            mAffairs.get(i).getDateStartExpected()),
+                    mAffairs.get(i).getDateFinishExpected().getTime())){
+                count++;
+            }
+        }
+
+        return count;
     }
 }

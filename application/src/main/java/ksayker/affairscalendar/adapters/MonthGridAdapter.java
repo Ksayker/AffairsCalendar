@@ -4,9 +4,7 @@ import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -92,11 +90,10 @@ public class MonthGridAdapter extends ArrayAdapter {
         long dayStart = DateUtil.getDateDayStart(date);
         TextView affairNumberTextView = (TextView) rootView
                 .findViewById(R.id.item_grid_view_affairs_number);
-        if (mAffairsData.getAffairs().indexOfKey(dayStart) >= 0
-                && mAffairsData.getAffairs().get(dayStart).size() != 0){
+        if (mAffairsData.getAffairsNumberForDay(dayStart) > 0){
             affairNumberTextView.setVisibility(View.VISIBLE);
             affairNumberTextView.setText(String.valueOf(
-                    mAffairsData.getAffairs().get(dayStart).size()));
+                    mAffairsData.getAffairsNumberForDay(dayStart)));
         } else {
             affairNumberTextView.setVisibility(View.INVISIBLE);
         }

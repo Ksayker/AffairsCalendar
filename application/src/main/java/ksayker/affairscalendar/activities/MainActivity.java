@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private void updateDateInfoMessage(long date){
         date = DateUtil.getDateDayStart(date);
-        if (mAffairsData.getAffairs().indexOfKey(date) >= 0){
+        if (mAffairsData.getAffairsNumberForDay(date) >= 0){
             mViewEmptyDateInfoMessage.setVisibility(View.GONE);
         } else {
             mViewEmptyDateInfoMessage.setVisibility(View.VISIBLE);

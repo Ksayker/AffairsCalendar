@@ -63,4 +63,9 @@ public class DateUtil {
         return getDateDayStart(day1) == getDateDayStart(day2);
     }
 
+    public static boolean isDateInInterval(long checkedDate, long dateStart,
+                                           long dateEnd){
+        return checkedDate <= dateEnd && checkedDate >= dateStart;
+    }
+
 }
