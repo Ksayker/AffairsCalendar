@@ -1,7 +1,10 @@
 package ksayker.affairscalendar.utils;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.ColorRes;
+import android.support.annotation.IdRes;
 import android.view.View;
 
 /**
@@ -16,5 +19,17 @@ public class ViewUtil {
         } else {
             view.setBackgroundDrawable(background);
         }
+    }
+
+    public static int getColor(Context context,@ColorRes int colorId){
+        int color;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            color = context.getResources().getColor(colorId,
+                    context.getTheme());
+        } else {
+            color = context.getResources().getColor(colorId);
+        }
+
+        return color;
     }
 }

@@ -3,6 +3,7 @@ package ksayker.affairscalendar.adapters;
 import android.content.Context;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import ksayker.affairscalendar.dialogs.EditAffairsDialogFragment;
 import ksayker.affairscalendar.model.Affair;
 import ksayker.affairscalendar.model.AffairsData;
 import ksayker.affairscalendar.model.SelectionDayData;
+import ksayker.affairscalendar.utils.ViewUtil;
 
 /**
  * @author ksayker
@@ -45,6 +47,8 @@ public class AffairsRecyclerAdapter extends
 
     private AffairsData mAffairs;
     private SelectionDayData mSelectionDayData;
+
+    private CardView mCvOnLongClickSelectedItem;
 
     public AffairsRecyclerAdapter(Context context,
                                   FragmentManager fragmentManager,
@@ -88,14 +92,20 @@ public class AffairsRecyclerAdapter extends
 
         holder.tvTime.setText(timeStart + " - " + timeEnd);
 
-        holder.vRootView.setOnClickListener(
-                new View.OnClickListener() {
+        holder.cvRootView.setOnLongClickListener(
+                new View.OnLongClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        showPopupMenu(v, position);
+                    public boolean onLongClick(View view) {
+                        showPopupMenu(view, position);
+                        mCvOnLongClickSelectedItem = (CardView) view;
+                        mCvOnLongClickSelectedItem.setBackgroundColor(
+                                ViewUtil.getColor(mContext,
+                                        R.color.card_view_item_affair_selected_affair_background));
+                        return true;
                     }
                 }
         );
+
     }
 
     @Override
@@ -142,11 +152,24 @@ public class AffairsRecyclerAdapter extends
                         return false;
                     }
                 });
+
+        popupMenu.setOnDismissListener(
+                new PopupMenu.OnDismissListener() {
+                    @Override
+                    public void onDismiss(PopupMenu menu) {
+                        if (mCvOnLongClickSelectedItem != null){
+                            mCvOnLongClickSelectedItem.setBackgroundColor(
+                                    ViewUtil.getColor(mContext,
+                                            R.color.card_view_item_affair_deselected_affair_background));
+                        }
+                    }
+                });
+
         popupMenu.show();
     }
 
     private SimpleDateFormat getFormat(Date dateStart, Date dateFinish){
-        SimpleDateFormat result = null;
+        SimpleDateFormat result;
 
         Calendar c1 = Calendar.getInstance();
         Calendar c2 = Calendar.getInstance();
@@ -206,13 +229,14 @@ public class AffairsRecyclerAdapter extends
     }
 
     class AffairsViewHolder extends RecyclerView.ViewHolder{
-        View vRootView;
+        CardView cvRootView;
         TextView tvTitle;
         TextView tvTime;
 
         AffairsViewHolder(View view) {
             super(view);
-            vRootView = view;
+            cvRootView = (CardView) view.findViewById(
+                    R.id.card_view_cv_item_affair);
             tvTitle = (TextView) view.findViewById(
                     R.id.card_view_affair_title);
             tvTime = (TextView) view.findViewById(

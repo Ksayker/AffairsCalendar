@@ -15,4 +15,7 @@
 
     <color name="activity_main_empty_date">#8e8e8e</color>
     <color name="activity_main_unselected_date_message">#8e8e8e</color>
+
+    <color name="card_view_item_affair_selected_affair_background">#aefafa</color>
+    <color name="card_view_item_affair_deselected_affair_background">#ffffff</color>
 </resources>
