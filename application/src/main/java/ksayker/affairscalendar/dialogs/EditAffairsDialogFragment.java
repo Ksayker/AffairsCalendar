@@ -123,7 +123,11 @@ public class EditAffairsDialogFragment extends DialogFragment
 
     private void init(){
         mSimpleDateFormat = new SimpleDateFormat(mFormat);
-        mOnAffairChanger = (OnAffairChanger) getActivity();
+        try {
+            mOnAffairChanger = (OnAffairChanger) getActivity();
+        } catch (ClassCastException e){
+            e.printStackTrace();
+        }
     }
 
     private void displayDateIn(EditText editText, long date){

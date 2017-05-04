@@ -14,7 +14,9 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import ksayker.affairscalendar.R;
 import ksayker.affairscalendar.dialogs.EditAffairsDialogFragment;
@@ -31,9 +33,9 @@ import ksayker.affairscalendar.utils.ViewUtil;
 public class AffairsRecyclerAdapter extends
         RecyclerView.Adapter<AffairsRecyclerAdapter.AffairsViewHolder> {
     private static final String FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE
-            = "yyyy.MM.dd HH:mm";
+            = "yyyy.MMMM.dd HH:mm";
     private static final String FORMAT_MONTH_DAY_HOUR_MINUTE
-            = "MM.dd HH:mm";
+            = "MMMM.dd HH:mm";
     private static final String FORMAT_DAY_HOUR_MINUTE = "dd HH:mm";
     private static final String FORMAT_HOUR_MINUTE = "HH:mm";
 
@@ -45,10 +47,12 @@ public class AffairsRecyclerAdapter extends
     private Context mContext;
     private FragmentManager mFragmentManager;
 
-    private AffairsData mAffairs;
     private SelectionDayData mSelectionDayData;
 
     private CardView mCvOnLongClickSelectedItem;
+
+    private AffairsData mAffairs;
+    private List<Affair> mAffairsOnDay;
 
     public AffairsRecyclerAdapter(Context context,
                                   FragmentManager fragmentManager,
@@ -56,8 +60,8 @@ public class AffairsRecyclerAdapter extends
                                   SelectionDayData selectionDayData){
         mContext = context;
         mFragmentManager = fragmentManager;
-        mAffairs = affairs;
         mSelectionDayData = selectionDayData;
+        mAffairs = affairs;
     }
 
     @Override
@@ -71,18 +75,22 @@ public class AffairsRecyclerAdapter extends
     }
 
     @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+
+        updateAffairOnDay();
+    }
+
+    @Override
     public void onBindViewHolder(AffairsViewHolder holder,
                                  final int position) {
 
-        long dateDay = mSelectionDayData.getSelectedDayDate();
         holder.tvTitle.setText(
-                mAffairs.getAffairsByDay(dateDay).get(position).getTitle());
+                mAffairsOnDay.get(position).getTitle());
 
-        Date dateAffairStart = mAffairs.getAffairsByDay(dateDay)
-                .get(position)
+        Date dateAffairStart = mAffairsOnDay.get(position)
                 .getDateStartExpected();
-        Date dateAffairFinish = mAffairs.getAffairsByDay(dateDay)
-                .get(position)
+        Date dateAffairFinish = mAffairsOnDay.get(position)
                 .getDateFinishExpected();
 
         SimpleDateFormat format = getFormat(dateAffairStart,
@@ -111,9 +119,8 @@ public class AffairsRecyclerAdapter extends
     @Override
     public int getItemCount() {
         int result = 0;
-        long dateDay = mSelectionDayData.getSelectedDayDate();
-        if (mAffairs != null && mAffairs.getAffairsByDay(dateDay) != null){
-            result = mAffairs.getAffairsByDay(dateDay).size();
+        if (mAffairsOnDay != null){
+            result = mAffairsOnDay.size();
         }
 
         return result;
@@ -130,10 +137,7 @@ public class AffairsRecyclerAdapter extends
                         Affair affair;
                         switch (item.getItemId()) {
                             case R.id.card_view_popupmenu_affair_item_edit:
-                                affair = mAffairs.getAffairsByDay(
-                                        mSelectionDayData
-                                                .getSelectedDayDate())
-                                                        .get(position);
+                                affair = mAffairsOnDay.get(position);
                                 affairEditDialogFragment
                                         = EditAffairsDialogFragment
                                         .newInstance(
@@ -226,6 +230,12 @@ public class AffairsRecyclerAdapter extends
                     FORMAT_HOUR_MINUTE);
         }
         return mFormatHourMinute;
+    }
+
+    public void updateAffairOnDay(){
+        mAffairsOnDay = mAffairs
+                .getAffairsByDay(mSelectionDayData.getSelectedDayDate());
+        Collections.sort(mAffairsOnDay, new Affair.ComparatorByDateStart());
     }
 
     class AffairsViewHolder extends RecyclerView.ViewHolder{

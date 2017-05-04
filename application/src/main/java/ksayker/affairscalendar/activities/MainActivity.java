@@ -42,11 +42,11 @@ public class MainActivity extends AppCompatActivity implements
     private SimpleDateFormat mSimpleDateFormat;
 
     private ViewPager mCalendarViewPager;
-    private MonthPagerAdapter mMonthPagerAdapter;
     private TwoWayGridView mMonthGrid;
-    private MonthGridAdapter mMonthGridAdapter;
     private RecyclerView mRecyclerView;
     private View mViewEmptyDateInfoMessage;
+    private MonthPagerAdapter mMonthPagerAdapter;
+    private AffairsRecyclerAdapter mAffairsRecyclerAdapter;
 
     private AffairsData mAffairsData;
     private SelectionDayData mSelectionDayData;
@@ -79,14 +79,15 @@ public class MainActivity extends AppCompatActivity implements
                 R.id.activity_main_rv_date_data);
         mRecyclerView.setLayoutManager(
                 new LinearLayoutManager(getApplicationContext()));
-        mRecyclerView.setAdapter(
-                new AffairsRecyclerAdapter(
-                        getApplicationContext(),
-                        getSupportFragmentManager(),
-                        mAffairsData,
-                        mSelectionDayData));
+        mAffairsRecyclerAdapter = new AffairsRecyclerAdapter(
+                getApplicationContext(),
+                getSupportFragmentManager(),
+                mAffairsData,
+                mSelectionDayData);
+        mRecyclerView.setAdapter(mAffairsRecyclerAdapter);
 
-        View viewActionBar = getLayoutInflater().inflate(R.layout.application_title, null);
+        View viewActionBar = getLayoutInflater().inflate(
+                R.layout.application_title, null);
         ActionBar actionBar = getSupportActionBar();
         ActionBar.LayoutParams params = new ActionBar.LayoutParams(
                 ActionBar.LayoutParams.WRAP_CONTENT,
@@ -124,15 +125,13 @@ public class MainActivity extends AppCompatActivity implements
         View focusedChild = mCalendarViewPager.getFocusedChild();
         mMonthGrid = (TwoWayGridView) focusedChild.findViewById(
                 R.id.fragment_page_month_gv_month_greed);
-        mMonthGridAdapter = ((MonthGridAdapter) mMonthGrid
-                .getAdapter());
 
-        mRecyclerView.setAdapter(
-                new AffairsRecyclerAdapter(
-                        getApplicationContext(),
-                        getSupportFragmentManager(),
-                        mAffairsData,
-                        mSelectionDayData));
+        mAffairsRecyclerAdapter = new AffairsRecyclerAdapter(
+                getApplicationContext(),
+                getSupportFragmentManager(),
+                mAffairsData,
+                mSelectionDayData);
+        mRecyclerView.setAdapter(mAffairsRecyclerAdapter);
     }
 
     private void hideUnselectedDateMessage(){
@@ -166,6 +165,8 @@ public class MainActivity extends AppCompatActivity implements
                 ((MonthGridAdapter)gridView.getAdapter()).notifyDataSetChanged();
             }
         }
+
+        mAffairsRecyclerAdapter.updateAffairOnDay();
 
         if (mRecyclerView.getAdapter().getItemCount() <= 0) {
             mViewEmptyDateInfoMessage.setVisibility(View.VISIBLE);

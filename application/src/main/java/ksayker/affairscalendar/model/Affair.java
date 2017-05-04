@@ -1,5 +1,6 @@
 package ksayker.affairscalendar.model;
 
+import java.util.Comparator;
 import java.util.Date;
 
 /**
@@ -122,5 +123,14 @@ public class Affair {
 
     public int getImportance() {
         return mImportance;
+    }
+
+    public static class ComparatorByDateStart implements Comparator<Affair>{
+
+        @Override
+        public int compare(Affair a1, Affair a2) {
+            return a1.getDateStartExpected()
+                    .compareTo(a2.getDateStartExpected());
+        }
     }
 }

@@ -6,7 +6,7 @@
 			<vcTitle>Отпуск Дмитрия Иванова</vcTitle>
 			<vcOfficerID>204</vcOfficerID>
 			<iTaskID>72755</iTaskID>
-			<dtStartExpected>2017-04-01 10:00:00</dtStartExpected>
+			<dtStartExpected>2017-04-01 01:00:00</dtStartExpected>
 			<dtFinishExpected>2017-04-15 08:30:00</dtFinishExpected>
 			<vcPlace/>
 			<vcMessageOriginal>Отпуск с 01.03 по 15.03.</vcMessageOriginal>
@@ -19,7 +19,7 @@
 			<vcTitle>Звонок Сергею Борисовичу</vcTitle>
 			<vcOfficerID>54</vcOfficerID>
 			<iTaskID>5464</iTaskID>
-			<dtStartExpected>2017-04-01 12:00:00</dtStartExpected>
+			<dtStartExpected>2017-04-01 02:00:00</dtStartExpected>
 			<dtFinishExpected>2017-04-26 12:30:00</dtFinishExpected>
 			<vcPlace/>
 			<vcMessageOriginal>Договориться о поставках</vcMessageOriginal>
@@ -32,7 +32,7 @@
 			<vcTitle>Встреча с акционерами</vcTitle>
 			<vcOfficerID></vcOfficerID>
 			<iTaskID></iTaskID>
-			<dtStartExpected>2017-04-01 15:00:00</dtStartExpected>
+			<dtStartExpected>2017-04-01 02:01:00</dtStartExpected>
 			<dtFinishExpected>2017-04-03 17:00:00</dtFinishExpected>
 			<vcPlace>ТЦ "Арсенал"</vcPlace>
 			<vcMessageOriginal/>
@@ -45,7 +45,7 @@
 			<vcTitle>Планёрка</vcTitle>
 			<vcOfficerID>654654</vcOfficerID>
 			<iTaskID>52454</iTaskID>
-			<dtStartExpected>2017-04-3 08:00:00</dtStartExpected>
+			<dtStartExpected>2017-04-1 01:01:00</dtStartExpected>
 			<dtFinishExpected>2017-04-3 08:30:00</dtFinishExpected>
 			<vcPlace/>
 			<vcMessageOriginal>Планёрка по важным вопросам</vcMessageOriginal>
@@ -55,7 +55,7 @@
 		</job>
 		<job>
 			<affairId>5</affairId>
-			<vcTitle>Отпуск Дмитрия Иванова</vcTitle>
+			<vcTitle>Отпуск</vcTitle>
 			<vcOfficerID>204</vcOfficerID>
 			<iTaskID>72755</iTaskID>
 			<dtStartExpected>2017-04-07 10:00:00</dtStartExpected>
@@ -68,7 +68,7 @@
 		</job>
 		<job>
 			<affairId>6</affairId>
-			<vcTitle>Звонок Сергею Борисовичу</vcTitle>
+			<vcTitle>Звонок</vcTitle>
 			<vcOfficerID>54</vcOfficerID>
 			<iTaskID>5464</iTaskID>
 			<dtStartExpected>2017-04-7 12:00:00</dtStartExpected>
@@ -81,7 +81,7 @@
 		</job>
 		<job>
 			<affairId>7</affairId>
-			<vcTitle>Встреча с акционерами</vcTitle>
+			<vcTitle>Встреча</vcTitle>
 			<vcOfficerID></vcOfficerID>
 			<iTaskID></iTaskID>
 			<dtStartExpected>2017-04-08 15:00:00</dtStartExpected>
@@ -94,7 +94,7 @@
 		</job>
 		<job>
 			<affairId>8</affairId>
-			<vcTitle>Планёрка</vcTitle>
+			<vcTitle>Планёрка планов</vcTitle>
 			<vcOfficerID>654654</vcOfficerID>
 			<iTaskID>52454</iTaskID>
 			<dtStartExpected>2017-04-01 08:00:00</dtStartExpected>
@@ -107,7 +107,7 @@
 		</job>
 		<job>
 			<affairId>9</affairId>
-			<vcTitle>Планёрка</vcTitle>
+			<vcTitle>Планёрка123123</vcTitle>
 			<vcOfficerID>654654</vcOfficerID>
 			<iTaskID>52454</iTaskID>
 			<dtStartExpected>2017-04-01 08:00:00</dtStartExpected>
@@ -120,7 +120,7 @@
 		</job>
 		<job>
 			<affairId>10</affairId>
-			<vcTitle>Планёрка</vcTitle>
+			<vcTitle>Планёрка999999999999</vcTitle>
 			<vcOfficerID>654654</vcOfficerID>
 			<iTaskID>52454</iTaskID>
 			<dtStartExpected>2017-04-15 08:00:00</dtStartExpected>
@@ -133,7 +133,7 @@
 		</job>
 		<job>
 			<affairId>11</affairId>
-			<vcTitle>Планёрка</vcTitle>
+			<vcTitle>Планёрка111111111111</vcTitle>
 			<vcOfficerID>654654</vcOfficerID>
 			<iTaskID>52454</iTaskID>
 			<dtStartExpected>2017-04-01 08:00:00</dtStartExpected>
@@ -146,7 +146,7 @@
 		</job>
 		<job>
 			<affairId>12</affairId>
-			<vcTitle>Планёрка</vcTitle>
+			<vcTitle>Планёрка222222222222</vcTitle>
 			<vcOfficerID>654654</vcOfficerID>
 			<iTaskID>52454</iTaskID>
 			<dtStartExpected>2017-04-01 08:00:00</dtStartExpected>
@@ -159,7 +159,7 @@
 		</job>
 		<job>
 			<affairId>13</affairId>
-			<vcTitle>Планёрка</vcTitle>
+			<vcTitle>333333333333333</vcTitle>
 			<vcOfficerID>654654</vcOfficerID>
 			<iTaskID>52454</iTaskID>
 			<dtStartExpected>2017-04-01 08:00:00</dtStartExpected>
@@ -172,7 +172,7 @@
 		</job>
 		<job>
 			<affairId>14</affairId>
-			<vcTitle>Планёрка</vcTitle>
+			<vcTitle>фффффффффффф</vcTitle>
 			<vcOfficerID>654654</vcOfficerID>
 			<iTaskID>52454</iTaskID>
 			<dtStartExpected>2017-04-01 08:00:00</dtStartExpected>
