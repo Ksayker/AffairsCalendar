@@ -1,10 +1,10 @@
 package ksayker.affairscalendar.fragments;
 
-import android.content.Context;
+import android.app.Activity;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.jess.ui.TwoWayGridView;
 
 import ksayker.affairscalendar.R;
-import ksayker.affairscalendar.adapters.MonthGridAdapter;
+import ksayker.affairscalendar.adapters.LineMonthGridAdapter;
 import ksayker.affairscalendar.interfaces.AffairsDataDeliverable;
 import ksayker.affairscalendar.interfaces.OnDateSelectionClickListenerDeliverable;
 import ksayker.affairscalendar.interfaces.SelectionDayDataDeliverable;
@@ -57,15 +57,9 @@ public class MonthPageFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        init();
-    }
-
-    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
         mDateMonth = getArguments().getLong(KEY_DATE);
         mDisplayedPosition = getArguments().getInt(KEY_DISPLAY_POSITION);
     }
@@ -75,33 +69,40 @@ public class MonthPageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        init();
         View rootView = inflater.inflate(R.layout.fragment_page_month, null);
         TwoWayGridView monthGrid = (TwoWayGridView) rootView
                 .findViewById(R.id.fragment_page_month_gv_month_greed);
-        MonthGridAdapter monthGridAdapter = new MonthGridAdapter(
-                getActivity().getApplicationContext(),
-                R.layout.item_grid_view_calendar,
-                mAffairsData,
-                mSelectionDayData,
-                mClickListener,
-                mDateMonth);
-        monthGrid.setAdapter(monthGridAdapter);
-        monthGrid.setNumColumns(DateUtil.getDaysInMonth(mDateMonth));
+//        if (getActivity().getResources().getConfiguration().orientation
+//                == Configuration.ORIENTATION_PORTRAIT){
+            LineMonthGridAdapter lineMonthGridAdapter = new LineMonthGridAdapter(
+                    getActivity().getApplicationContext(),
+                    R.layout.item_grid_view_calendar,
+                    mAffairsData,
+                    mSelectionDayData,
+                    mClickListener,
+                    mDateMonth);
+            monthGrid.setAdapter(lineMonthGridAdapter);
+            monthGrid.setNumColumns(DateUtil.getDaysInMonth(mDateMonth));
 
-        switch (mDisplayedPosition){
-            case DISPLAY_CURRENT_DATE:
-                monthGrid.setSelection(monthGridAdapter
-                        .calculatePositionFromDate(
-                                mSelectionDayData.getCurrentDateDay()));
-                break;
-            case DISPLAY_END_OF_MONTH:
-                monthGrid.setSelection(Integer.MAX_VALUE);
-                break;
-            default:
-            case DISPLAY_START_OF_MONTH:
-                monthGrid.setSelection(0);
-                break;
-        }
+            switch (mDisplayedPosition){
+                case DISPLAY_CURRENT_DATE:
+                    monthGrid.setSelection(lineMonthGridAdapter
+                            .calculatePositionFromDate(
+                                    mSelectionDayData.getCurrentDateDay()));
+                    break;
+                case DISPLAY_END_OF_MONTH:
+                    monthGrid.setSelection(Integer.MAX_VALUE);
+                    break;
+                default:
+                case DISPLAY_START_OF_MONTH:
+                    monthGrid.setSelection(0);
+                    break;
+            }
+//        } else {
+//            //orientation==ORIENTATION_LANDSCAPE
+//
+//        }
 
         return rootView;
     }

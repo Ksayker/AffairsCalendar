@@ -19,7 +19,7 @@ import java.util.List;
 import ksayker.affairscalendar.R;
 import ksayker.affairscalendar.adapters.AffairsRecyclerAdapter;
 import ksayker.affairscalendar.adapters.MonthPagerAdapter;
-import ksayker.affairscalendar.adapters.MonthGridAdapter;
+import ksayker.affairscalendar.adapters.LineMonthGridAdapter;
 import ksayker.affairscalendar.interfaces.AffairsDataDeliverable;
 import ksayker.affairscalendar.interfaces.OnAffairChanger;
 import ksayker.affairscalendar.interfaces.OnAffairsDateSelector;
@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements
     private SimpleDateFormat mSimpleDateFormat;
 
     private ViewPager mCalendarViewPager;
-    private TwoWayGridView mMonthGrid;
     private RecyclerView mRecyclerView;
     private View mViewEmptyDateInfoMessage;
     private MonthPagerAdapter mMonthPagerAdapter;
@@ -122,10 +121,6 @@ public class MainActivity extends AppCompatActivity implements
         updateDateInfoMessage(date);
         displayDate(date);
 
-        View focusedChild = mCalendarViewPager.getFocusedChild();
-        mMonthGrid = (TwoWayGridView) focusedChild.findViewById(
-                R.id.fragment_page_month_gv_month_greed);
-
         mAffairsRecyclerAdapter = new AffairsRecyclerAdapter(
                 getApplicationContext(),
                 getSupportFragmentManager(),
@@ -141,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private void updateDateInfoMessage(long date){
         date = DateUtil.getDateDayStart(date);
-        if (mAffairsData.getAffairsNumberForDay(date) >= 0){
+        if (mAffairsData.getAffairsNumberForDay(date) > 0){
             mViewEmptyDateInfoMessage.setVisibility(View.GONE);
         } else {
             mViewEmptyDateInfoMessage.setVisibility(View.VISIBLE);
@@ -162,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements
                     .getChildAt(i).findViewById(
                             R.id.fragment_page_month_gv_month_greed);
             if (gridView != null){
-                ((MonthGridAdapter)gridView.getAdapter()).notifyDataSetChanged();
+                ((LineMonthGridAdapter)gridView.getAdapter()).notifyDataSetChanged();
             }
         }
 

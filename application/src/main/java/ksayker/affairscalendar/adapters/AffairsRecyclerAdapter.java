@@ -7,6 +7,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupMenu;
@@ -33,10 +34,10 @@ import ksayker.affairscalendar.utils.ViewUtil;
 public class AffairsRecyclerAdapter extends
         RecyclerView.Adapter<AffairsRecyclerAdapter.AffairsViewHolder> {
     private static final String FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE
-            = "yyyy.MMMM.dd HH:mm";
+            = "dd.MM.yyyy";
     private static final String FORMAT_MONTH_DAY_HOUR_MINUTE
-            = "MMMM.dd HH:mm";
-    private static final String FORMAT_DAY_HOUR_MINUTE = "dd HH:mm";
+            = "dd.MM.yyyy";
+    private static final String FORMAT_DAY_HOUR_MINUTE = "dd.MM.yyyy";
     private static final String FORMAT_HOUR_MINUTE = "HH:mm";
 
     private SimpleDateFormat mFormatYearMonthDayHourMinute;

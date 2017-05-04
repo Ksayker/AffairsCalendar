@@ -13,6 +13,9 @@
     <string name="dialog_fragment_affair_edit_start_label">Начало</string>
     <string name="dialog_fragment_affair_edit_end_label">Окончание</string>
 
+    <string name="message_affair_date_start_after_affair_date_end">Начало не может быть после окончания</string>
+    <string name="message_affair_date_end_before_affair_date_start">Окончание не может быть до начала</string>
+
     <string name="ok">Ок</string>
     <string name="cancel">Отмена</string>
 </resources>

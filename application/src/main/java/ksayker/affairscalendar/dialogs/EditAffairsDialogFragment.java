@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -192,17 +193,30 @@ public class EditAffairsDialogFragment extends DialogFragment
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(0);
         calendar.set(mSelectedYear, mSelectedMonth, mSelectedDay, hourOfDay,
                 minute);
         switch (mDateChangingStay){
             case STAY_DATE_START_CHANGING:
-                mDateStart = calendar.getTimeInMillis();
-                displayDateIn(mEtAffairDateStart, mDateStart);
+                if (mDateEnd >= calendar.getTimeInMillis()){
+                    mDateStart = calendar.getTimeInMillis();
+                    displayDateIn(mEtAffairDateStart, mDateStart);
+                } else {
+                    Toast.makeText(getActivity(),
+                            R.string.message_affair_date_start_after_affair_date_end,
+                            Toast.LENGTH_SHORT).show();
+                }
                 break;
             default:
             case STAY_DATE_END_CHANGING:
-                mDateEnd = calendar.getTimeInMillis();
-                displayDateIn(mEtAffairDateEnd, mDateEnd);
+                if (mDateStart <= calendar.getTimeInMillis()){
+                    mDateEnd = calendar.getTimeInMillis();
+                    displayDateIn(mEtAffairDateEnd, mDateEnd);
+                } else {
+                    Toast.makeText(getActivity(),
+                            R.string.message_affair_date_end_before_affair_date_start,
+                            Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
     }

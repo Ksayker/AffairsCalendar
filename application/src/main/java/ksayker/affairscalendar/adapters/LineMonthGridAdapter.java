@@ -26,7 +26,7 @@ import ksayker.affairscalendar.views.DateTextView;
  * @version 0.0.1
  * @since 25.04.17
  */
-public class MonthGridAdapter extends ArrayAdapter {
+public class LineMonthGridAdapter extends ArrayAdapter {
     private static final int SELECTED_DATE_FROM_OTHER_MONTH = -1;
 
     private AffairsData mAffairsData;
@@ -39,12 +39,12 @@ public class MonthGridAdapter extends ArrayAdapter {
 
     private final long mDateMonth;
 
-    public MonthGridAdapter(@NonNull Context context,
-                            @LayoutRes int resource,
-                            AffairsData affairsData,
-                            SelectionDayData selectionDayData,
-                            OnDateSelectionClickListener clickListener,
-                            long dateMonth) {
+    public LineMonthGridAdapter(@NonNull Context context,
+                                @LayoutRes int resource,
+                                AffairsData affairsData,
+                                SelectionDayData selectionDayData,
+                                OnDateSelectionClickListener clickListener,
+                                long dateMonth) {
         super(context, resource);
         mContext = context;
         mDateMonth = dateMonth;
