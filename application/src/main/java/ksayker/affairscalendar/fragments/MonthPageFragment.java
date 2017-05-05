@@ -1,6 +1,5 @@
 package ksayker.affairscalendar.fragments;
 
-import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,11 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
+import android.widget.TextView;
 
 import com.jess.ui.TwoWayGridView;
 
 import ksayker.affairscalendar.R;
-import ksayker.affairscalendar.adapters.LineMonthGridAdapter;
+import ksayker.affairscalendar.adapters.GridMonthGridViewAdapter;
+import ksayker.affairscalendar.adapters.LineMonthGridViewAdapter;
 import ksayker.affairscalendar.interfaces.AffairsDataDeliverable;
 import ksayker.affairscalendar.interfaces.OnDateSelectionClickListenerDeliverable;
 import ksayker.affairscalendar.interfaces.SelectionDayDataDeliverable;
@@ -71,23 +73,23 @@ public class MonthPageFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         init();
         View rootView = inflater.inflate(R.layout.fragment_page_month, null);
-        TwoWayGridView monthGrid = (TwoWayGridView) rootView
-                .findViewById(R.id.fragment_page_month_gv_month_greed);
-//        if (getActivity().getResources().getConfiguration().orientation
-//                == Configuration.ORIENTATION_PORTRAIT){
-            LineMonthGridAdapter lineMonthGridAdapter = new LineMonthGridAdapter(
+        if (getActivity().getResources().getConfiguration().orientation
+                == Configuration.ORIENTATION_PORTRAIT){
+            TwoWayGridView monthGrid = (TwoWayGridView) rootView
+                    .findViewById(R.id.fragment_page_month_gv_month_greed);
+            LineMonthGridViewAdapter lineMonthGridViewAdapter = new LineMonthGridViewAdapter(
                     getActivity().getApplicationContext(),
-                    R.layout.item_grid_view_calendar,
+                    R.layout.item_grid_view_line_calendar,
                     mAffairsData,
                     mSelectionDayData,
                     mClickListener,
                     mDateMonth);
-            monthGrid.setAdapter(lineMonthGridAdapter);
+            monthGrid.setAdapter(lineMonthGridViewAdapter);
             monthGrid.setNumColumns(DateUtil.getDaysInMonth(mDateMonth));
 
             switch (mDisplayedPosition){
                 case DISPLAY_CURRENT_DATE:
-                    monthGrid.setSelection(lineMonthGridAdapter
+                    monthGrid.setSelection(lineMonthGridViewAdapter
                             .calculatePositionFromDate(
                                     mSelectionDayData.getCurrentDateDay()));
                     break;
@@ -99,10 +101,15 @@ public class MonthPageFragment extends Fragment {
                     monthGrid.setSelection(0);
                     break;
             }
-//        } else {
-//            //orientation==ORIENTATION_LANDSCAPE
-//
-//        }
+        } else {
+            //orientation==ORIENTATION_LANDSCAPE
+            TwoWayGridView monthGrid = (TwoWayGridView) rootView
+                    .findViewById(R.id.fragment_page_month_gv_month_greed1);
+            GridMonthGridViewAdapter lineMonthGridViewAdapter = new GridMonthGridViewAdapter(
+                    getActivity().getApplicationContext(),
+                    R.layout.item_grid_view_grid_calendar);
+            monthGrid.setAdapter(lineMonthGridViewAdapter);
+        }
 
         return rootView;
     }

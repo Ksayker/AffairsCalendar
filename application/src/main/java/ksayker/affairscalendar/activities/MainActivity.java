@@ -19,7 +19,7 @@ import java.util.List;
 import ksayker.affairscalendar.R;
 import ksayker.affairscalendar.adapters.AffairsRecyclerAdapter;
 import ksayker.affairscalendar.adapters.MonthPagerAdapter;
-import ksayker.affairscalendar.adapters.LineMonthGridAdapter;
+import ksayker.affairscalendar.adapters.LineMonthGridViewAdapter;
 import ksayker.affairscalendar.interfaces.AffairsDataDeliverable;
 import ksayker.affairscalendar.interfaces.OnAffairChanger;
 import ksayker.affairscalendar.interfaces.OnAffairsDateSelector;
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements
                     .getChildAt(i).findViewById(
                             R.id.fragment_page_month_gv_month_greed);
             if (gridView != null){
-                ((LineMonthGridAdapter)gridView.getAdapter()).notifyDataSetChanged();
+                ((LineMonthGridViewAdapter)gridView.getAdapter()).notifyDataSetChanged();
             }
         }
 

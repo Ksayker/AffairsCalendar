@@ -1,6 +1,7 @@
 package ksayker.affairscalendar.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -26,7 +27,7 @@ import ksayker.affairscalendar.views.DateTextView;
  * @version 0.0.1
  * @since 25.04.17
  */
-public class LineMonthGridAdapter extends ArrayAdapter {
+public class LineMonthGridViewAdapter extends ArrayAdapter {
     private static final int SELECTED_DATE_FROM_OTHER_MONTH = -1;
 
     private AffairsData mAffairsData;
@@ -39,12 +40,12 @@ public class LineMonthGridAdapter extends ArrayAdapter {
 
     private final long mDateMonth;
 
-    public LineMonthGridAdapter(@NonNull Context context,
-                                @LayoutRes int resource,
-                                AffairsData affairsData,
-                                SelectionDayData selectionDayData,
-                                OnDateSelectionClickListener clickListener,
-                                long dateMonth) {
+    public LineMonthGridViewAdapter(@NonNull Context context,
+                                    @LayoutRes int resource,
+                                    AffairsData affairsData,
+                                    SelectionDayData selectionDayData,
+                                    OnDateSelectionClickListener clickListener,
+                                    long dateMonth) {
         super(context, resource);
         mContext = context;
         mDateMonth = dateMonth;
@@ -66,7 +67,7 @@ public class LineMonthGridAdapter extends ArrayAdapter {
                         @NonNull ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(
-                    R.layout.item_grid_view_calendar, null);
+                    R.layout.item_grid_view_line_calendar, null);
         }
 
         ((TextView)convertView.findViewById(R.id.item_grid_view_day_of_week))
