@@ -10,6 +10,7 @@
     <color name="color_calendar_date_background_deselected">#dbdcdc</color>
     <color name="color_calendar_date_background_selected">#aefafa</color>
     <color name="color_calendar_background_date_current">#93d1d1</color>
+    <color name="color_calendar_background_date_other_month">#b1b1b1</color>
 
     <color name="color_calendar_greed_affairs_number_text">#000000</color>
 

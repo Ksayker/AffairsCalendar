@@ -13,57 +13,57 @@
         android:background="@color/color_calendar_date_background_deselected"
         >
         <TextView
+            android:id="@+id/fragment_page_month_tv_week_day_monday"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="PN"
             android:gravity="center"
             />
         <TextView
+            android:id="@+id/fragment_page_month_tv_week_day_tuesday"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="VT"
             />
         <TextView
+            android:id="@+id/fragment_page_month_tv_week_day_wednesday"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="SR"
             />
         <TextView
+            android:id="@+id/fragment_page_month_tv_week_day_thursday"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="CH"
             />
         <TextView
+            android:id="@+id/fragment_page_month_tv_week_day_friday"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="PT"
             />
         <TextView
+            android:id="@+id/fragment_page_month_tv_week_day_saturday"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="SB"
             />
         <TextView
+            android:id="@+id/fragment_page_month_tv_week_day_sunday"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="VS"
             />
     </LinearLayout>
     <com.jess.ui.TwoWayGridView
-        android:id="@+id/fragment_page_month_gv_month_greed1"
+        android:id="@+id/fragment_page_month_gv_month_greed"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

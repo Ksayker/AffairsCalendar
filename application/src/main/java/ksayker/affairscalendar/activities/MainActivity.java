@@ -1,5 +1,6 @@
 package ksayker.affairscalendar.activities;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -18,6 +19,8 @@ import java.util.List;
 
 import ksayker.affairscalendar.R;
 import ksayker.affairscalendar.adapters.AffairsRecyclerAdapter;
+import ksayker.affairscalendar.adapters.GridMonthGridViewAdapter;
+import ksayker.affairscalendar.adapters.MonthGridViewAdapter;
 import ksayker.affairscalendar.adapters.MonthPagerAdapter;
 import ksayker.affairscalendar.adapters.LineMonthGridViewAdapter;
 import ksayker.affairscalendar.interfaces.AffairsDataDeliverable;
@@ -157,7 +160,8 @@ public class MainActivity extends AppCompatActivity implements
                     .getChildAt(i).findViewById(
                             R.id.fragment_page_month_gv_month_greed);
             if (gridView != null){
-                ((LineMonthGridViewAdapter)gridView.getAdapter()).notifyDataSetChanged();
+                    ((MonthGridViewAdapter)gridView.getAdapter())
+                            .notifyDataSetChanged();
             }
         }
 

@@ -1,5 +1,6 @@
 package ksayker.affairscalendar.utils;
 
+import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -21,7 +22,7 @@ public class DateUtil {
         return  getDateMonthStart(date.getTime());
     }
 
-    private static long getDateMonthStart(long date){
+    public static long getDateMonthStart(long date){
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(date);
 
@@ -66,6 +67,29 @@ public class DateUtil {
     public static boolean isDateInInterval(long checkedDate, long dateStart,
                                            long dateEnd){
         return checkedDate <= dateEnd && checkedDate >= dateStart;
+    }
+
+    public static String getWeekDayName(long dateMonth, int position){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(dateMonth);
+        calendar.add(Calendar.DAY_OF_MONTH, position);
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        return new DateFormatSymbols().getShortWeekdays()[dayOfWeek];
+    }
+
+    public static boolean isBothDateInOneMonth(long date1, long date2){
+        Calendar calendar1 = Calendar.getInstance();
+        Calendar calendar2 = Calendar.getInstance();
+
+        calendar1.setTimeInMillis(date1);
+        int year1 = calendar1.get(Calendar.YEAR);
+        int month1 = calendar1.get(Calendar.MONTH);
+
+        calendar2.setTimeInMillis(date2);
+        int year2 = calendar2.get(Calendar.YEAR);
+        int month2 = calendar2.get(Calendar.MONTH);
+
+        return year1 == year2 && month1 == month2;
     }
 
 }

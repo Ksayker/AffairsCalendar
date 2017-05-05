@@ -7,10 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.TextView;
 
 import com.jess.ui.TwoWayGridView;
+
+import java.text.DateFormatSymbols;
 
 import ksayker.affairscalendar.R;
 import ksayker.affairscalendar.adapters.GridMonthGridViewAdapter;
@@ -103,12 +104,19 @@ public class MonthPageFragment extends Fragment {
             }
         } else {
             //orientation==ORIENTATION_LANDSCAPE
+            setWeekDayLandOrientation(rootView);
+
             TwoWayGridView monthGrid = (TwoWayGridView) rootView
-                    .findViewById(R.id.fragment_page_month_gv_month_greed1);
-            GridMonthGridViewAdapter lineMonthGridViewAdapter = new GridMonthGridViewAdapter(
-                    getActivity().getApplicationContext(),
-                    R.layout.item_grid_view_grid_calendar);
-            monthGrid.setAdapter(lineMonthGridViewAdapter);
+                    .findViewById(R.id.fragment_page_month_gv_month_greed);
+            GridMonthGridViewAdapter gridMonthGridViewAdapter =
+                    new GridMonthGridViewAdapter(
+                        getActivity().getApplicationContext(),
+                        R.layout.item_grid_view_grid_calendar,
+                            mAffairsData,
+                            mSelectionDayData,
+                            mClickListener,
+                            mDateMonth);
+            monthGrid.setAdapter(gridMonthGridViewAdapter);
         }
 
         return rootView;
@@ -126,5 +134,32 @@ public class MonthPageFragment extends Fragment {
         } catch (ClassCastException e){
             e.printStackTrace();
         }
+    }
+
+    private void setWeekDayLandOrientation(View rootView){
+        TextView tv;
+        String[] daysName = new DateFormatSymbols().getShortWeekdays();
+
+        tv = (TextView) rootView.findViewById(
+                R.id.fragment_page_month_tv_week_day_monday);
+        tv.setText(daysName[2]);
+        tv = (TextView) rootView.findViewById(
+                R.id.fragment_page_month_tv_week_day_tuesday);
+        tv.setText(daysName[3]);
+        tv = (TextView) rootView.findViewById(
+                R.id.fragment_page_month_tv_week_day_wednesday);
+        tv.setText(daysName[4]);
+        tv = (TextView) rootView.findViewById(
+                R.id.fragment_page_month_tv_week_day_thursday);
+        tv.setText(daysName[5]);
+        tv = (TextView) rootView.findViewById(
+                R.id.fragment_page_month_tv_week_day_friday);
+        tv.setText(daysName[6]);
+        tv = (TextView) rootView.findViewById(
+                R.id.fragment_page_month_tv_week_day_saturday);
+        tv.setText(daysName[7]);
+        tv = (TextView) rootView.findViewById(
+                R.id.fragment_page_month_tv_week_day_sunday);
+        tv.setText(daysName[1]);
     }
 }

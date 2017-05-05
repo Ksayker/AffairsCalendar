@@ -11,7 +11,7 @@
         android:layout_weight="3"
         >
         <ksayker.affairscalendar.views.DateTextView
-            android:id="@+id/item_grid_view_date1"
+            android:id="@+id/item_grid_view_date"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@color/colorPrimary"
@@ -28,6 +28,7 @@
             android:textColor="@color/color_calendar_greed_affairs_number_text"
             android:gravity="center"
             android:background="@drawable/background_affairs_number"
+            android:visibility="gone"
             />
     </FrameLayout>
 </LinearLayout>

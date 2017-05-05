@@ -27,9 +27,7 @@ import ksayker.affairscalendar.views.DateTextView;
  * @version 0.0.1
  * @since 25.04.17
  */
-public class LineMonthGridViewAdapter extends ArrayAdapter {
-    private static final int SELECTED_DATE_FROM_OTHER_MONTH = -1;
-
+public class LineMonthGridViewAdapter extends MonthGridViewAdapter {
     private AffairsData mAffairsData;
     private SelectionDayData mSelectionDayData;
     private OnDateSelectionClickListener mClickListener;
@@ -46,7 +44,7 @@ public class LineMonthGridViewAdapter extends ArrayAdapter {
                                     SelectionDayData selectionDayData,
                                     OnDateSelectionClickListener clickListener,
                                     long dateMonth) {
-        super(context, resource);
+        super(context, resource, affairsData, selectionDayData, dateMonth);
         mContext = context;
         mDateMonth = dateMonth;
         mAffairsData = affairsData;
@@ -71,7 +69,7 @@ public class LineMonthGridViewAdapter extends ArrayAdapter {
         }
 
         ((TextView)convertView.findViewById(R.id.item_grid_view_day_of_week))
-                .setText(getWeekDayName(position));
+                .setText(DateUtil.getWeekDayName(mDateMonth,position));
 
         DateTextView dateTextView = ((DateTextView) convertView
                 .findViewById(R.id.item_grid_view_date));
@@ -87,32 +85,17 @@ public class LineMonthGridViewAdapter extends ArrayAdapter {
         return convertView;
     }
 
-    private void displayNumberAffairs(View rootView, long date){
-        long dayStart = DateUtil.getDateDayStart(date);
-        TextView affairNumberTextView = (TextView) rootView
-                .findViewById(R.id.item_grid_view_affairs_number);
-        if (mAffairsData.getAffairsNumberForDay(dayStart) > 0){
-            affairNumberTextView.setVisibility(View.VISIBLE);
-            affairNumberTextView.setText(String.valueOf(
-                    mAffairsData.getAffairsNumberForDay(dayStart)));
-        } else {
-            affairNumberTextView.setVisibility(View.INVISIBLE);
+    @Override
+    public int calculatePositionFromDate(long date){
+        int result = SELECTED_DATE_FROM_OTHER_MONTH;
+
+        if (DateUtil.isBothDateInOneMonth(date, mDateMonth)){
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(date);
+            result = calendar.get(Calendar.DAY_OF_MONTH) - 1;
         }
-    }
 
-    private boolean isBothDateInOneMonth(long date1, long date2){
-        Calendar calendar1 = Calendar.getInstance();
-        Calendar calendar2 = Calendar.getInstance();
-
-        calendar1.setTimeInMillis(date1);
-        int year1 = calendar1.get(Calendar.YEAR);
-        int month1 = calendar1.get(Calendar.MONTH);
-
-        calendar2.setTimeInMillis(date2);
-        int year2 = calendar2.get(Calendar.YEAR);
-        int month2 = calendar2.get(Calendar.MONTH);
-
-        return year1 == year2 && month1 == month2;
+        return result;
     }
 
     private long calculateDateDayFromPosition(int selectedPosition){
@@ -120,43 +103,5 @@ public class LineMonthGridViewAdapter extends ArrayAdapter {
         calendar.setTimeInMillis(mDateMonth);
         calendar.add(Calendar.DAY_OF_MONTH, selectedPosition);
         return calendar.getTimeInMillis();
-    }
-
-    private String getWeekDayName(int position){
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(mDateMonth);
-        calendar.add(Calendar.DAY_OF_MONTH, position);
-        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-        return new DateFormatSymbols().getShortWeekdays()[dayOfWeek];
-    }
-
-    private void displaySelectedDates(View view, int position) {
-        if (position == calculatePositionFromDate(mSelectionDayData
-                .getSelectedDayDate())) {
-            mSelectionDayData.setCurrentView(view);
-            ViewUtil.setBackground(view,
-                    mSelectionDayData.getSelectedBackground());
-        } else {
-            ViewUtil.setBackground(view,
-                    mSelectionDayData.getDeselectedBackground());
-        }
-
-        if (position == calculatePositionFromDate(
-                mSelectionDayData.getCurrentDateDay())) {
-            ViewUtil.setBackground(view,
-                    mSelectionDayData.getCurrentDayBackground());
-        }
-    }
-
-    public int calculatePositionFromDate(long date){
-        int result = SELECTED_DATE_FROM_OTHER_MONTH;
-
-        if (isBothDateInOneMonth(date, mDateMonth)){
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(date);
-            result = calendar.get(Calendar.DAY_OF_MONTH) - 1;
-        }
-
-        return result;
     }
 }
