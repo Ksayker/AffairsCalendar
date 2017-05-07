@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private static final String dateFormat = "d MMMM yyyy г., EEEE";
 
-    private static final String fileName = "jobs_test.xml";
+    private static final String fileName = "jobs.xml";
 
     private SimpleDateFormat mSimpleDateFormat;
 
