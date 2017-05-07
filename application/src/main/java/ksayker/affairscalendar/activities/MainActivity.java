@@ -1,6 +1,6 @@
 package ksayker.affairscalendar.activities;
 
-import android.content.res.Configuration;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -19,10 +19,8 @@ import java.util.List;
 
 import ksayker.affairscalendar.R;
 import ksayker.affairscalendar.adapters.AffairsRecyclerAdapter;
-import ksayker.affairscalendar.adapters.GridMonthGridViewAdapter;
 import ksayker.affairscalendar.adapters.MonthGridViewAdapter;
 import ksayker.affairscalendar.adapters.MonthPagerAdapter;
-import ksayker.affairscalendar.adapters.LineMonthGridViewAdapter;
 import ksayker.affairscalendar.interfaces.AffairsDataDeliverable;
 import ksayker.affairscalendar.interfaces.OnAffairChanger;
 import ksayker.affairscalendar.interfaces.OnAffairsDateSelector;
@@ -32,12 +30,17 @@ import ksayker.affairscalendar.listeners.OnDateSelectionClickListener;
 import ksayker.affairscalendar.model.Affair;
 import ksayker.affairscalendar.model.AffairsData;
 import ksayker.affairscalendar.model.SelectionDayData;
-import ksayker.affairscalendar.parsers.XmlParser;
+import ksayker.affairscalendar.xml.XmlAffairsParser;
+import ksayker.affairscalendar.xml.XmlAffairsSerializer;
 import ksayker.affairscalendar.utils.DateUtil;
 
 public class MainActivity extends AppCompatActivity implements
         OnAffairsDateSelector, OnAffairChanger, AffairsDataDeliverable,
         SelectionDayDataDeliverable, OnDateSelectionClickListenerDeliverable {
+    private static final String KEY_BUNDLE_SELECTED_DATE = "KEY_BUNDLE_SELECTED_DATE";
+    private static final String KEY_SHARED_PREFERENCE_ALL_AFFAIR_DATA
+            = "KEY_SHARED_PREFERENCE_ALL_AFFAIR_DATA";
+
     private static final String dateFormat = "d MMMM yyyy г., EEEE";
 
     private static final String fileName = "jobs_test.xml";
@@ -61,7 +64,22 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
         initData();
+        loadAffairData(savedInstanceState);
         initUi();
+        getDateFromSavedState(savedInstanceState);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putLong(KEY_BUNDLE_SELECTED_DATE, mSelectionDayData.getSelectedDayDate());
+
+        String allAffairData = new XmlAffairsSerializer().serialize(mAffairsData);
+
+        SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
+        editor.putString(KEY_SHARED_PREFERENCE_ALL_AFFAIR_DATA, allAffairData);
+        editor.apply();
     }
 
     private void initUi(){
@@ -91,26 +109,40 @@ public class MainActivity extends AppCompatActivity implements
         View viewActionBar = getLayoutInflater().inflate(
                 R.layout.application_title, null);
         ActionBar actionBar = getSupportActionBar();
-        ActionBar.LayoutParams params = new ActionBar.LayoutParams(
-                ActionBar.LayoutParams.WRAP_CONTENT,
-                ActionBar.LayoutParams.MATCH_PARENT,
-                Gravity.CENTER);
-        actionBar.setCustomView(viewActionBar, params);
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setDisplayShowTitleEnabled(false);
+        if (actionBar != null){
+            ActionBar.LayoutParams params = new ActionBar.LayoutParams(
+                    ActionBar.LayoutParams.WRAP_CONTENT,
+                    ActionBar.LayoutParams.MATCH_PARENT,
+                    Gravity.CENTER);
+            actionBar.setCustomView(viewActionBar, params);
+            actionBar.setDisplayShowCustomEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
     }
 
     private void initData(){
-        XmlParser parser = new XmlParser();
-        List<Affair> affairsList = parser.parseAffairsFromAsset(
-                getApplicationContext(), fileName);
-
-        mAffairsData = new AffairsData(affairsList);
         mSelectionDayData = new SelectionDayData(getApplicationContext());
 
         mOnDateSelectionClickListener = new OnDateSelectionClickListener(
                  mSelectionDayData, this);
         mSimpleDateFormat = new SimpleDateFormat(dateFormat);
+    }
+
+    private void loadAffairData(Bundle savedInstantState){
+        XmlAffairsParser parser = new XmlAffairsParser();
+        List<Affair> affairsList;
+        if (savedInstantState == null){
+            affairsList = parser.parseAffairsFromFile(
+                    getApplicationContext(), fileName);
+        } else {
+            affairsList = parser.parseAffairsFromString(
+                    getApplicationContext(),
+                    getPreferences(MODE_PRIVATE)
+                            .getString(KEY_SHARED_PREFERENCE_ALL_AFFAIR_DATA, "")
+            );
+        }
+
+        mAffairsData = new AffairsData(affairsList);
     }
 
     @Override
@@ -173,6 +205,16 @@ public class MainActivity extends AppCompatActivity implements
             mViewEmptyDateInfoMessage.setVisibility(View.GONE);
         }
         mRecyclerView.getAdapter().notifyDataSetChanged();
+    }
+
+    private void getDateFromSavedState(Bundle savedInstanceState){
+        if (savedInstanceState != null){
+            long date = savedInstanceState.getLong(KEY_BUNDLE_SELECTED_DATE);
+            if (date != SelectionDayData.EMPTY_DATE_VALUE){
+                mSelectionDayData.setSelectedDayDate(date);
+                onAffairDateSelected(date);
+            }
+        }
     }
 
     @Override

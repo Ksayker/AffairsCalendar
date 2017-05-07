@@ -17,7 +17,8 @@ import ksayker.affairscalendar.utils.DateUtil;
  * @since 29.04.17
  */
 public class SelectionDayData {
-    private long mSelectedDayDate;
+    public static final long EMPTY_DATE_VALUE = Long.MIN_VALUE;
+
     private View mCurrentView;
     private View mPreviousView;
 
@@ -25,17 +26,23 @@ public class SelectionDayData {
     private Drawable mDeselectedBackground;
     private Drawable mCurrentDayBackground;
 
+    private long mSelectedDayDate;
     private long currentDateDay;
 
+    private boolean mIsSelectedDayDateSet;
+
     public SelectionDayData(Context context){
+        mSelectedDayDate = EMPTY_DATE_VALUE;
+
+        mIsSelectedDayDateSet = false;
         currentDateDay = DateUtil.getDateDayStart(new Date());
 
 //        Set current data of month for 15
 //
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.setTimeInMillis(currentDateDay);
-//        calendar.add(Calendar.DAY_OF_MONTH, 15);
-//        currentDateDay = calendar.getTimeInMillis();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(currentDateDay);
+        calendar.set(Calendar.DAY_OF_MONTH, 20);
+        currentDateDay = calendar.getTimeInMillis();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             mSelectedBackground = context.getResources().getDrawable(
@@ -55,7 +62,10 @@ public class SelectionDayData {
     }
 
     public void setSelectedDayDate(long selectedDayDate) {
-        this.mSelectedDayDate = selectedDayDate;
+        if (selectedDayDate != EMPTY_DATE_VALUE){
+            this.mSelectedDayDate = selectedDayDate;
+            this.mIsSelectedDayDateSet = true;
+        }
     }
 
     public void setCurrentView(View currentView) {
@@ -108,5 +118,9 @@ public class SelectionDayData {
 
     public Drawable getCurrentDayBackground() {
         return mCurrentDayBackground;
+    }
+
+    public boolean isSelectedDayDateSet() {
+        return mIsSelectedDayDateSet;
     }
 }

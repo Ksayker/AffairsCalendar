@@ -15,7 +15,6 @@ import java.util.Locale;
 
 import ksayker.affairscalendar.fragments.MonthPageFragment;
 import ksayker.affairscalendar.model.SelectionDayData;
-import ksayker.affairscalendar.utils.DateUtil;
 
 /**
  * @author ksayker
@@ -55,12 +54,12 @@ public class MonthPagerAdapter extends FragmentPagerAdapter{
     @Override
     public Fragment getItem(int position) {
         int currentItem = mViewPager.getCurrentItem();
-        int greedPosition = MonthPageFragment.DISPLAY_START_OF_MONTH;
+        int greedPosition = MonthPageFragment.DISPLAY_SCROLLED_TO_START_OF_MONTH;
         if (position == currentItem){
-            greedPosition = MonthPageFragment.DISPLAY_CURRENT_DATE;
+            greedPosition = MonthPageFragment.DISPLAY_SCROLLED_TO_CURRENT_OR_SELECTED_DATE;
         } else {
             if (position == currentItem - 1){
-                greedPosition = MonthPageFragment.DISPLAY_END_OF_MONTH;
+                greedPosition = MonthPageFragment.DISPLAY_SCROLLED_TO_END_OF_MONTH;
             }
         }
 

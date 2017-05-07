@@ -1,7 +1,8 @@
-package ksayker.affairscalendar.parsers;
+package ksayker.affairscalendar.xml;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.renderscript.ScriptGroup;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -10,6 +11,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,34 +24,10 @@ import ksayker.affairscalendar.model.Affair;
  * @version 0.0.1
  * @since 26.04.17
  */
-public class XmlParser {
-    private static final String ENCODING_WINDOWS_1251 = "WINDOWS-1251";
+public class XmlAffairsParser extends XmlBase{
 
-    private static final String KEY_TAG_JOB = "job";
-    private static final String KEY_TAG_AFFAIR_ID = "affairId";
-    private static final String KEY_TAG_TITLE = "vcTitle";
-    private static final String KEY_TAG_OFFICER_ID = "vcOfficerID";
-    private static final String KEY_TAG_TASK_ID = "iTaskID";
-    private static final String KEY_TAG_DATE_START_EXPECTED
-            = "dtStartExpected";
-    private static final String KEY_TAG_DATE_FINISH_EXPECTED
-            = "dtFinishExpected";
-    private static final String KEY_TAG_PLACE = "vcPlace";
-    private static final String KEY_TAG_MESSAGE = "vcMessageOriginal";
-    private static final String KEY_TAG_URGENCY = "iUrgency";
-    private static final String KEY_TAG_PRIVATE = "bPrivate";
-    private static final String KEY_TAG_IMPORTANCE = "iImportance";
-
-    private String mDateFormat;
-    private SimpleDateFormat mSimpleDateFormat;
-
-    public XmlParser(){
-        mDateFormat = "yyyy-MM-dd HH:mm:ss";
-        mSimpleDateFormat = new SimpleDateFormat(mDateFormat);
-    }
-
-    public List<Affair> parseAffairsFromAsset(Context context,
-                                              String fileName){
+    public List<Affair> parseAffairsFromFile(Context context,
+                                             String fileName){
         XmlPullParser parser = null;
         try {
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
@@ -60,6 +38,21 @@ public class XmlParser {
             parser.setInput(new InputStreamReader(inputStream,
                     ENCODING_WINDOWS_1251));
         } catch (XmlPullParserException | IOException e) {
+            e.printStackTrace();
+        }
+
+        return parseAffairs(parser);
+    }
+
+    public List<Affair> parseAffairsFromString(Context context,
+                                               String string){
+        XmlPullParser parser = null;
+        try {
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            factory.setNamespaceAware(true);
+            parser = factory.newPullParser();
+            parser.setInput(new StringReader(string));
+        } catch (XmlPullParserException e) {
             e.printStackTrace();
         }
 
@@ -146,10 +139,8 @@ public class XmlParser {
                                         title,
                                         officerIdInt,
                                         taskIdInt,
-                                        mSimpleDateFormat.parse(
-                                                dateStartExpected),
-                                        mSimpleDateFormat.parse(
-                                                dateFinishExpected),
+                                        parse(dateStartExpected),
+                                        parse(dateFinishExpected),
                                         place,
                                         message,
                                         Integer.parseInt(urgency),

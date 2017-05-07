@@ -7,9 +7,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.text.DateFormatSymbols;
-import java.util.Calendar;
-
 import ksayker.affairscalendar.R;
 import ksayker.affairscalendar.model.AffairsData;
 import ksayker.affairscalendar.model.SelectionDayData;
@@ -26,17 +23,14 @@ public class MonthGridViewAdapter extends ArrayAdapter {
 
     private AffairsData mAffairsData;
     private SelectionDayData mSelectionDayData;
-    private long mDateMonth;
 
 
     MonthGridViewAdapter(@NonNull Context context, @LayoutRes int resource,
-                         AffairsData affairsData, SelectionDayData selectionDayData,
-                         long dateMonth) {
+                         AffairsData affairsData, SelectionDayData selectionDayData) {
         super(context, resource);
 
         mAffairsData = affairsData;
         mSelectionDayData = selectionDayData;
-        mDateMonth = dateMonth;
     }
 
     void displayNumberAffairs(View rootView, long date){
@@ -50,29 +44,6 @@ public class MonthGridViewAdapter extends ArrayAdapter {
         } else {
             affairNumberTextView.setVisibility(View.INVISIBLE);
         }
-    }
-
-    String getWeekDayName(int position){
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(mDateMonth);
-        calendar.add(Calendar.DAY_OF_MONTH, position);
-        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-        return new DateFormatSymbols().getShortWeekdays()[dayOfWeek];
-    }
-
-    boolean isBothDateInOneMonth(long date1, long date2){
-        Calendar calendar1 = Calendar.getInstance();
-        Calendar calendar2 = Calendar.getInstance();
-
-        calendar1.setTimeInMillis(date1);
-        int year1 = calendar1.get(Calendar.YEAR);
-        int month1 = calendar1.get(Calendar.MONTH);
-
-        calendar2.setTimeInMillis(date2);
-        int year2 = calendar2.get(Calendar.YEAR);
-        int month2 = calendar2.get(Calendar.MONTH);
-
-        return year1 == year2 && month1 == month2;
     }
 
     void displaySelectedDates(View view, int position) {

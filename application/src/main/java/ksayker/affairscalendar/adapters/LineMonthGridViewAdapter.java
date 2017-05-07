@@ -44,7 +44,7 @@ public class LineMonthGridViewAdapter extends MonthGridViewAdapter {
                                     SelectionDayData selectionDayData,
                                     OnDateSelectionClickListener clickListener,
                                     long dateMonth) {
-        super(context, resource, affairsData, selectionDayData, dateMonth);
+        super(context, resource, affairsData, selectionDayData);
         mContext = context;
         mDateMonth = dateMonth;
         mAffairsData = affairsData;

@@ -63,7 +63,7 @@
             />
     </LinearLayout>
     <com.jess.ui.TwoWayGridView
-        android:id="@+id/fragment_page_month_gv_month_greed"
+        android:id="@+id/fragment_page_month_gv_month_greed_orientation_land"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

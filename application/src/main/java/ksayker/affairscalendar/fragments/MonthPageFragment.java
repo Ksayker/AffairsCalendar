@@ -30,9 +30,9 @@ import ksayker.affairscalendar.utils.DateUtil;
  * @since 22.04.17
  */
 public class MonthPageFragment extends Fragment {
-    public static final int DISPLAY_CURRENT_DATE = 1;
-    public static final int DISPLAY_END_OF_MONTH = 2;
-    public static final int DISPLAY_START_OF_MONTH = 3;
+    public static final int DISPLAY_SCROLLED_TO_CURRENT_OR_SELECTED_DATE = 1;
+    public static final int DISPLAY_SCROLLED_TO_END_OF_MONTH = 2;
+    public static final int DISPLAY_SCROLLED_TO_START_OF_MONTH = 3;
 
     private static final String KEY_DATE = "KEY_DATE";
     private static final String KEY_DISPLAY_POSITION = "KEY_DISPLAY_POSITION";
@@ -89,16 +89,27 @@ public class MonthPageFragment extends Fragment {
             monthGrid.setNumColumns(DateUtil.getDaysInMonth(mDateMonth));
 
             switch (mDisplayedPosition){
-                case DISPLAY_CURRENT_DATE:
-                    monthGrid.setSelection(lineMonthGridViewAdapter
-                            .calculatePositionFromDate(
-                                    mSelectionDayData.getCurrentDateDay()));
+                case DISPLAY_SCROLLED_TO_CURRENT_OR_SELECTED_DATE:
+                    if (mSelectionDayData.isSelectedDayDateSet()){
+                        monthGrid.setSelection(
+                                lineMonthGridViewAdapter
+                                        .calculatePositionFromDate(
+                                                mSelectionDayData
+                                                        .getSelectedDayDate()));
+                    } else {
+                        int position = lineMonthGridViewAdapter
+                                .calculatePositionFromDate(
+                                        mSelectionDayData
+                                                .getCurrentDateDay());
+                        monthGrid.setSelection(
+                                position);
+                    }
                     break;
-                case DISPLAY_END_OF_MONTH:
+                case DISPLAY_SCROLLED_TO_END_OF_MONTH:
                     monthGrid.setSelection(Integer.MAX_VALUE);
                     break;
                 default:
-                case DISPLAY_START_OF_MONTH:
+                case DISPLAY_SCROLLED_TO_START_OF_MONTH:
                     monthGrid.setSelection(0);
                     break;
             }
@@ -107,7 +118,7 @@ public class MonthPageFragment extends Fragment {
             setWeekDayLandOrientation(rootView);
 
             TwoWayGridView monthGrid = (TwoWayGridView) rootView
-                    .findViewById(R.id.fragment_page_month_gv_month_greed);
+                    .findViewById(R.id.fragment_page_month_gv_month_greed_orientation_land);
             GridMonthGridViewAdapter gridMonthGridViewAdapter =
                     new GridMonthGridViewAdapter(
                         getActivity().getApplicationContext(),
