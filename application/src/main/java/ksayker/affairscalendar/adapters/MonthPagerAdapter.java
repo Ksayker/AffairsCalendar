@@ -58,7 +58,7 @@ public class MonthPagerAdapter extends FragmentPagerAdapter{
                 .DISPLAY_SCROLLED_TO_START_OF_MONTH;
         if (position == currentItem){
             greedPosition = MonthPageFragment
-                    .DISPLAY_SCROLLED_TO_CURRENT_OR_SELECTED_DATE;
+                    .DISPLAY_SCROLLED_TO_CURRENT_DATE;
         } else {
             if (position == currentItem - 1){
                 greedPosition = MonthPageFragment

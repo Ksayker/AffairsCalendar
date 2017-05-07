@@ -30,7 +30,7 @@ import ksayker.affairscalendar.utils.DateUtil;
  * @since 22.04.17
  */
 public class MonthPageFragment extends Fragment {
-    public static final int DISPLAY_SCROLLED_TO_CURRENT_OR_SELECTED_DATE = 1;
+    public static final int DISPLAY_SCROLLED_TO_CURRENT_DATE = 1;
     public static final int DISPLAY_SCROLLED_TO_END_OF_MONTH = 2;
     public static final int DISPLAY_SCROLLED_TO_START_OF_MONTH = 3;
 
@@ -88,30 +88,34 @@ public class MonthPageFragment extends Fragment {
             monthGrid.setAdapter(lineMonthGridViewAdapter);
             monthGrid.setNumColumns(DateUtil.getDaysInMonth(mDateMonth));
 
-            switch (mDisplayedPosition){
-                case DISPLAY_SCROLLED_TO_CURRENT_OR_SELECTED_DATE:
-                    if (mSelectionDayData.isSelectedDayDateSet()){
+            if (mSelectionDayData.isSelectedDayDateSet()
+                    && (DateUtil.getDateMonthStart(mSelectionDayData
+                            .getSelectedDayDate())
+                        == DateUtil.getDateMonthStart(mDateMonth))
+                        ) {
+                //display selected date
+                monthGrid.setSelection(
+                        lineMonthGridViewAdapter
+                                .calculatePositionFromDate(
+                                        mSelectionDayData
+                                                .getSelectedDayDate()));
+            } else {
+                switch (mDisplayedPosition){
+                    case DISPLAY_SCROLLED_TO_CURRENT_DATE:
                         monthGrid.setSelection(
                                 lineMonthGridViewAdapter
                                         .calculatePositionFromDate(
                                                 mSelectionDayData
-                                                        .getSelectedDayDate()));
-                    } else {
-                        int position = lineMonthGridViewAdapter
-                                .calculatePositionFromDate(
-                                        mSelectionDayData
-                                                .getCurrentDateDay());
-                        monthGrid.setSelection(
-                                position);
-                    }
-                    break;
-                case DISPLAY_SCROLLED_TO_END_OF_MONTH:
-                    monthGrid.setSelection(Integer.MAX_VALUE);
-                    break;
-                default:
-                case DISPLAY_SCROLLED_TO_START_OF_MONTH:
-                    monthGrid.setSelection(0);
-                    break;
+                                                        .getCurrentDateDay()));
+                        break;
+                    case DISPLAY_SCROLLED_TO_END_OF_MONTH:
+                        monthGrid.setSelection(Integer.MAX_VALUE);
+                        break;
+                    default:
+                    case DISPLAY_SCROLLED_TO_START_OF_MONTH:
+                        monthGrid.setSelection(0);
+                        break;
+                }
             }
         } else {
             //orientation==ORIENTATION_LANDSCAPE
