@@ -7,7 +7,6 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupMenu;
@@ -21,9 +20,9 @@ import java.util.List;
 
 import ksayker.affairscalendar.R;
 import ksayker.affairscalendar.dialogs.EditAffairsDialogFragment;
-import ksayker.affairscalendar.model.Affair;
-import ksayker.affairscalendar.model.AffairsData;
-import ksayker.affairscalendar.model.SelectionDayData;
+import ksayker.affairscalendar.datamodel.Affair;
+import ksayker.affairscalendar.datamodel.AffairsData;
+import ksayker.affairscalendar.datamodel.SelectionDayData;
 import ksayker.affairscalendar.utils.ViewUtil;
 
 /**

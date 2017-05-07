@@ -1,4 +1,4 @@
-package ksayker.affairscalendar.model;
+package ksayker.affairscalendar.datamodel;
 
 import java.util.Comparator;
 import java.util.Date;

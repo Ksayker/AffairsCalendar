@@ -25,11 +25,11 @@ public class XmlBase {
     static final String KEY_TAG_PRIVATE = "bPrivate";
     static final String KEY_TAG_IMPORTANCE = "iImportance";
 
-    private String mDateFormat;
+    private String mDateFormat = "yyyy-MM-dd HH:mm:ss";
+
     private SimpleDateFormat mSimpleDateFormat;
 
     XmlBase() {
-        mDateFormat = "yyyy-MM-dd HH:mm:ss";
         mSimpleDateFormat = new SimpleDateFormat(mDateFormat);
     }
 

@@ -1,4 +1,4 @@
-package ksayker.affairscalendar.model;
+package ksayker.affairscalendar.datamodel;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -39,10 +39,10 @@ public class SelectionDayData {
 
 //        Set current data of month for 15
 //
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(currentDateDay);
-        calendar.set(Calendar.DAY_OF_MONTH, 20);
-        currentDateDay = calendar.getTimeInMillis();
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTimeInMillis(currentDateDay);
+//        calendar.set(Calendar.DAY_OF_MONTH, 15);
+//        currentDateDay = calendar.getTimeInMillis();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             mSelectedBackground = context.getResources().getDrawable(

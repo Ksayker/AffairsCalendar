@@ -14,7 +14,7 @@ import java.util.Formatter;
 import java.util.Locale;
 
 import ksayker.affairscalendar.fragments.MonthPageFragment;
-import ksayker.affairscalendar.model.SelectionDayData;
+import ksayker.affairscalendar.datamodel.SelectionDayData;
 
 /**
  * @author ksayker
@@ -54,12 +54,15 @@ public class MonthPagerAdapter extends FragmentPagerAdapter{
     @Override
     public Fragment getItem(int position) {
         int currentItem = mViewPager.getCurrentItem();
-        int greedPosition = MonthPageFragment.DISPLAY_SCROLLED_TO_START_OF_MONTH;
+        int greedPosition = MonthPageFragment
+                .DISPLAY_SCROLLED_TO_START_OF_MONTH;
         if (position == currentItem){
-            greedPosition = MonthPageFragment.DISPLAY_SCROLLED_TO_CURRENT_OR_SELECTED_DATE;
+            greedPosition = MonthPageFragment
+                    .DISPLAY_SCROLLED_TO_CURRENT_OR_SELECTED_DATE;
         } else {
             if (position == currentItem - 1){
-                greedPosition = MonthPageFragment.DISPLAY_SCROLLED_TO_END_OF_MONTH;
+                greedPosition = MonthPageFragment
+                        .DISPLAY_SCROLLED_TO_END_OF_MONTH;
             }
         }
 
@@ -78,7 +81,8 @@ public class MonthPagerAdapter extends FragmentPagerAdapter{
         int currentItem = mViewPager.getCurrentItem();
 
         if (mDatesMonth.indexOfKey(position) < 0){
-            mDatesMonth.put(position, calculateDateMonthFromPosition(position));
+            mDatesMonth.put(position,
+                    calculateDateMonthFromPosition(position));
         }
 
         if (position == currentItem){

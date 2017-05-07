@@ -3,7 +3,7 @@ package ksayker.affairscalendar.listeners;
 import android.view.View;
 
 import ksayker.affairscalendar.interfaces.OnAffairsDateSelector;
-import ksayker.affairscalendar.model.SelectionDayData;
+import ksayker.affairscalendar.datamodel.SelectionDayData;
 import ksayker.affairscalendar.utils.DateUtil;
 import ksayker.affairscalendar.utils.ViewUtil;
 import ksayker.affairscalendar.views.DateTextView;

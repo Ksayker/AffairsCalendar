@@ -8,8 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import ksayker.affairscalendar.R;
-import ksayker.affairscalendar.model.AffairsData;
-import ksayker.affairscalendar.model.SelectionDayData;
+import ksayker.affairscalendar.datamodel.AffairsData;
+import ksayker.affairscalendar.datamodel.SelectionDayData;
 import ksayker.affairscalendar.utils.DateUtil;
 import ksayker.affairscalendar.utils.ViewUtil;
 
@@ -26,7 +26,8 @@ public class MonthGridViewAdapter extends ArrayAdapter {
 
 
     MonthGridViewAdapter(@NonNull Context context, @LayoutRes int resource,
-                         AffairsData affairsData, SelectionDayData selectionDayData) {
+                         AffairsData affairsData,
+                         SelectionDayData selectionDayData) {
         super(context, resource);
 
         mAffairsData = affairsData;

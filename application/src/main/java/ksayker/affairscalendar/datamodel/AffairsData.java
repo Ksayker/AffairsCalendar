@@ -1,6 +1,4 @@
-package ksayker.affairscalendar.model;
-
-import android.support.v4.util.LongSparseArray;
+package ksayker.affairscalendar.datamodel;
 
 import java.util.ArrayList;
 import java.util.Date;

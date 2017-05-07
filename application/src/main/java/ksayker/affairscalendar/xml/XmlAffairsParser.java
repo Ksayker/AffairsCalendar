@@ -2,7 +2,6 @@ package ksayker.affairscalendar.xml;
 
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.renderscript.ScriptGroup;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -13,11 +12,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import ksayker.affairscalendar.model.Affair;
+import ksayker.affairscalendar.datamodel.Affair;
 
 /**
  * @author ksayker
@@ -44,8 +42,7 @@ public class XmlAffairsParser extends XmlBase{
         return parseAffairs(parser);
     }
 
-    public List<Affair> parseAffairsFromString(Context context,
-                                               String string){
+    public List<Affair> parseAffairsFromString(String string){
         XmlPullParser parser = null;
         try {
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();

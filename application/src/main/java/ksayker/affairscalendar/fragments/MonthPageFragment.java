@@ -20,8 +20,8 @@ import ksayker.affairscalendar.interfaces.AffairsDataDeliverable;
 import ksayker.affairscalendar.interfaces.OnDateSelectionClickListenerDeliverable;
 import ksayker.affairscalendar.interfaces.SelectionDayDataDeliverable;
 import ksayker.affairscalendar.listeners.OnDateSelectionClickListener;
-import ksayker.affairscalendar.model.AffairsData;
-import ksayker.affairscalendar.model.SelectionDayData;
+import ksayker.affairscalendar.datamodel.AffairsData;
+import ksayker.affairscalendar.datamodel.SelectionDayData;
 import ksayker.affairscalendar.utils.DateUtil;
 
 /**

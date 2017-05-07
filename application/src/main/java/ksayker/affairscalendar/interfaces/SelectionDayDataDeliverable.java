@@ -1,6 +1,6 @@
 package ksayker.affairscalendar.interfaces;
 
-import ksayker.affairscalendar.model.SelectionDayData;
+import ksayker.affairscalendar.datamodel.SelectionDayData;
 
 /**
  * @author ksayker

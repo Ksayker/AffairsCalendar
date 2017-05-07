@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.List;
 
-import ksayker.affairscalendar.model.Affair;
-import ksayker.affairscalendar.model.AffairsData;
+import ksayker.affairscalendar.datamodel.Affair;
+import ksayker.affairscalendar.datamodel.AffairsData;
 
 /**
  * @author ksayker

@@ -62,6 +62,7 @@
             android:gravity="center"
             />
     </LinearLayout>
+    <!-- research other id vs custom view, for prevent loading state -->
     <com.jess.ui.TwoWayGridView
         android:id="@+id/fragment_page_month_gv_month_greed_orientation_land"
         android:layout_width="match_parent"

@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
@@ -27,9 +28,9 @@ import ksayker.affairscalendar.interfaces.OnAffairsDateSelector;
 import ksayker.affairscalendar.interfaces.OnDateSelectionClickListenerDeliverable;
 import ksayker.affairscalendar.interfaces.SelectionDayDataDeliverable;
 import ksayker.affairscalendar.listeners.OnDateSelectionClickListener;
-import ksayker.affairscalendar.model.Affair;
-import ksayker.affairscalendar.model.AffairsData;
-import ksayker.affairscalendar.model.SelectionDayData;
+import ksayker.affairscalendar.datamodel.Affair;
+import ksayker.affairscalendar.datamodel.AffairsData;
+import ksayker.affairscalendar.datamodel.SelectionDayData;
 import ksayker.affairscalendar.xml.XmlAffairsParser;
 import ksayker.affairscalendar.xml.XmlAffairsSerializer;
 import ksayker.affairscalendar.utils.DateUtil;
@@ -37,7 +38,8 @@ import ksayker.affairscalendar.utils.DateUtil;
 public class MainActivity extends AppCompatActivity implements
         OnAffairsDateSelector, OnAffairChanger, AffairsDataDeliverable,
         SelectionDayDataDeliverable, OnDateSelectionClickListenerDeliverable {
-    private static final String KEY_BUNDLE_SELECTED_DATE = "KEY_BUNDLE_SELECTED_DATE";
+    private static final String KEY_BUNDLE_SELECTED_DATE
+            = "KEY_BUNDLE_SELECTED_DATE";
     private static final String KEY_SHARED_PREFERENCE_ALL_AFFAIR_DATA
             = "KEY_SHARED_PREFERENCE_ALL_AFFAIR_DATA";
 
@@ -73,9 +75,11 @@ public class MainActivity extends AppCompatActivity implements
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putLong(KEY_BUNDLE_SELECTED_DATE, mSelectionDayData.getSelectedDayDate());
+        outState.putLong(KEY_BUNDLE_SELECTED_DATE,
+                mSelectionDayData.getSelectedDayDate());
 
-        String allAffairData = new XmlAffairsSerializer().serialize(mAffairsData);
+        String allAffairData = new XmlAffairsSerializer().serialize(
+                mAffairsData);
 
         SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
         editor.putString(KEY_SHARED_PREFERENCE_ALL_AFFAIR_DATA, allAffairData);
@@ -135,8 +139,8 @@ public class MainActivity extends AppCompatActivity implements
             affairsList = parser.parseAffairsFromFile(
                     getApplicationContext(), fileName);
         } else {
+            // TODO: 07.05.17 async loading from file.
             affairsList = parser.parseAffairsFromString(
-                    getApplicationContext(),
                     getPreferences(MODE_PRIVATE)
                             .getString(KEY_SHARED_PREFERENCE_ALL_AFFAIR_DATA, "")
             );
