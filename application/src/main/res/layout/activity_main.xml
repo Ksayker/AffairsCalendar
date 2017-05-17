@@ -7,68 +7,8 @@
     tools:context="ksayker.affairscalendar.activities.MainActivity"
     android:orientation="vertical">
 
-    <ksayker.affairscalendar.views.CalendarViewPager
-        android:id="@+id/activity_main_vp_calendar"
+    <RelativeLayout
+        android:id="@+id/activity_main_rl_fragment_holder"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/calendar_height"
-        >
-        <ksayker.affairscalendar.views.CalendarPagerTabStrip
-            android:id="@+id/activity_main_calendar_pts_header"
-            style="@style/viewPagerTitleStrip"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            >
-        </ksayker.affairscalendar.views.CalendarPagerTabStrip>
-    </ksayker.affairscalendar.views.CalendarViewPager>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        >
-        <TextView
-            android:id="@+id/activity_main_tv_unselected_date_message"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/activity_main_request_select_date"
-            android:textSize="@dimen/activity_main_request_select_date_text_size"
-            android:textColor="@color/activity_main_unselected_date_message"
-            android:gravity="center_horizontal|top"
-            />
-        <LinearLayout
-            android:id="@+id/activity_main_ll_date_info"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:id="@+id/activity_main_tv_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/activity_main_date_text_size"
-                android:gravity="center_horizontal|top"
-                android:visibility="gone"
-                />
-            <TextView
-                android:id="@+id/activity_main_tv_empty_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/activity_main_no_planned_affairs"
-                android:textColor="@color/activity_main_empty_date"
-                android:textSize="@dimen/activity_main_no_planned_affairs_text_size"
-                android:gravity="center_horizontal|top"
-                android:visibility="gone"
-                />
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/activity_main_rv_date_data"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:scrollbars="vertical"
-                />
-
-        </LinearLayout>
-    </LinearLayout>
+        android:layout_height="match_parent"/>
 </LinearLayout>

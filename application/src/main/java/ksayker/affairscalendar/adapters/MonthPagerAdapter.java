@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.format.DateUtils;
 import android.util.SparseArray;
@@ -21,7 +22,7 @@ import ksayker.affairscalendar.datamodel.SelectionDayData;
  * @version 0.0.1
  * @since 22.04.17
  */
-public class MonthPagerAdapter extends FragmentPagerAdapter{
+public class MonthPagerAdapter extends FragmentPagerAdapter {
     /** Flags to display month */
     private static final int MONTH_YEAR_FLAG = DateUtils.FORMAT_SHOW_DATE
             | DateUtils.FORMAT_NO_MONTH_DAY | DateUtils.FORMAT_SHOW_YEAR;

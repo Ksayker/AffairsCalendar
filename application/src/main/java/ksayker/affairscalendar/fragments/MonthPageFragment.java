@@ -140,11 +140,11 @@ public class MonthPageFragment extends Fragment {
     private void init(){
         try {
             mClickListener =
-                    ((OnDateSelectionClickListenerDeliverable) getActivity())
+                    ((OnDateSelectionClickListenerDeliverable) getActivity().getSupportFragmentManager().findFragmentByTag(MainFragment.FRAGMENT_TAG))
                             .getOnDateSelectionClickListener();
-            mAffairsData = ((AffairsDataDeliverable)getActivity())
+            mAffairsData = ((AffairsDataDeliverable) getActivity().getSupportFragmentManager().findFragmentByTag(MainFragment.FRAGMENT_TAG))
                     .getAffairsData();
-            mSelectionDayData = ((SelectionDayDataDeliverable)getActivity())
+            mSelectionDayData = ((SelectionDayDataDeliverable) getActivity().getSupportFragmentManager().findFragmentByTag(MainFragment.FRAGMENT_TAG))
                     .getSelectionDayData();
         } catch (ClassCastException e){
             e.printStackTrace();
@@ -176,5 +176,11 @@ public class MonthPageFragment extends Fragment {
         tv = (TextView) rootView.findViewById(
                 R.id.fragment_page_month_tv_week_day_sunday);
         tv.setText(daysName[1]);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        System.out.println("AAAAA OnDestroy");
     }
 }
